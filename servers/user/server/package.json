@@ -1,0 +1,31 @@
+{
+  "name": "devsurfing-user-server",
+  "version": "0.0.1",
+  "description": "Serviço de gerenciamento de usuários do devsurfing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PauloSilva92/devsurfing.git"
+  },
+  "keywords": [
+    "couchsurfing",
+    "developers",
+    "nodejs",
+    "server",
+    "api",
+    "rest",
+    "travel"
+  ],
+  "author": "Paulo Roberto da Silva <paulorob_s@hotmail.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/PauloSilva92/devsurfing/issues"
+  },
+  "homepage": "https://github.com/PauloSilva92/devsurfing#readme",
+  "dependencies": {
+    "mongoose": "^4.4.11"
+  }
+}

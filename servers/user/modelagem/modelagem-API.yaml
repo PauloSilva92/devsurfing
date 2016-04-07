@@ -1,0 +1,105 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.1"
+  title: Devsurfing
+definitions:
+  User:
+    type: Object
+    properties:
+      id: 
+        type: ObjectID
+      name: 
+        type: Object
+        lastname: String
+        firstname: String
+      email: 
+        type: String
+      password: 
+        type: String
+      username: 
+        type: String
+      followers: 
+        type: Array
+      following: 
+        type: Array
+      adress: 
+        type: Object
+        state: 
+          type: String
+        country: 
+          type: String
+  user_id:
+    name: id
+    in: path
+    description: id do usuário
+    type: querystring
+    
+          
+  
+paths:
+  /user/save:
+    post:
+      summary:
+        Salva os dados do usuario que esta efetuando o cadastro
+      consumes: 
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: 
+            Um objeto json que é passado no corpo da requisicao
+          name: user
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        201:
+          description: 
+            Cadastrou no banco de dados e retorna um jsonwebtoken para acesso as funcionaldiades do sistema ja efetuando o login
+          
+          
+        
+  /user/login:
+    post:
+      summary: 
+        Recebe email e senha e retorna um jsonwebtoken para acesso as funcionalidades do sistema
+      consumes:
+        - application/json
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          description: 
+            Recebe um JSON com as informações do usuário, confere se ele existe no banco de dados e então gera um jsonwebtoken
+          name: 
+            user
+          required: 
+            true
+          schema:
+            email: String
+            password: String
+      responses:
+        200:
+          description: 
+            O usuários existe no banco de dados e um jsonwebtoken para acesso as funcionalidades do sitema é retornado asdsad
+  
+  
+  /user/id:
+    get:
+      summary: 
+        Recebe um ID pela url, e um jsonwebtoken pela header e retorna os dados do usuário específico
+      produces:
+        - application/json
+      parameters:
+        $ref: '#/definitions/user_id'
+      responses:
+        200:
+          description: retorna os dados do usuários (email, id, nome, endereço, seguidores e seguindo)
+    delete:
+      summary: Deleta o usuário específico
+      description: pega o id do usuário pela url e deleta-o se o jsonwebtoken passado pela header for dele próprio
+      responses:
+        200:
+          description: retorna uma mensagem informando que deletou o usuário e redireciona para a pagina inicial

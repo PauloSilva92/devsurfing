@@ -1,0 +1,25 @@
+{
+	name : {
+		firstname : "Paulo",
+		lastname : "Silva"
+	},
+	email : "paulo@paulo.com",
+	password : "123abc",
+	username : "paulosilva92",
+	adress : {
+		city : "Torres",
+		state : "RS",
+		country : "Brasil"
+	},
+	followers : [],
+	following : [],
+	created_at : Date.now
+}
+
+
+{
+	"email": "paulo@paulo",
+	"password": "123"
+}
+
+
