@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/PauloSilva92/devsurfing#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "mongoose": "^4.4.11"
   }
 }
