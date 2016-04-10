@@ -30,7 +30,9 @@ userSchema.methods.genToken = (email, name)=>{
 	};
 	return jwt.sign(user, 'zipute');
 } 
-userSchema.methods.validPass = (password)=> bcrypt.compareSync(password, this.password);
+userSchema.methods.validPass = function(password){
+	return bcrypt.compareSync(password, this.password);	
+};
 
 module.exports = userSchema;
 

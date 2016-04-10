@@ -28,7 +28,7 @@ router.post('/save',(req,res)=>{
 
 router.post('/login',(req, res)=>{
 	const _user = req.body;
-	user.save(_user,(data)=>{
+	user.login(_user,(data)=>{
 		res.json(data);
 	});
 });
