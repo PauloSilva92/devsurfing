@@ -7,8 +7,8 @@ const Field = {
   type: String,
   set: _set,
   validate: [_validate, 'Invalid email ({VALUE})'],
-  unique : true,
-  required: true
+  required: true,
+  trim : true
 }
 
 module.exports = Field

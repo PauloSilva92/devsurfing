@@ -1,0 +1,25 @@
+<div class="singinform">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Cadastre-se</div>
+	  <div class="panel-body">
+	  	<form ng-controller="userController">
+	  		<label for="firstname">Nome</label>
+	  		<input class="form-control" type="text" ng-model="user.name.firstname"></input>
+	  		<label for="lastname">Sobrenome</label>
+	  		<input class="form-control" type="text" ng-model="user.name.lastname"></input>
+	  		<label for="email">Email</label>
+	  		<input class="form-control" type="text" ng-model="user.email"></input>
+	  		<label for="password">Senha</label>
+	  		<input class="form-control" type="password" ng-model="user.password"></input>
+	  		<label for="adress.city">Cidade</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.city"></input>
+	  		<label for="adress.state">Estado</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.state"></input>
+	  		<label for="country">Pais</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.country"></input><br>
+	  		<button class="form-control btn btn-default" ng-click="save(user)">Cadastrar</button>	
+	  		
+	  	</form>
+	  </div>
+	</div>	
+</div>

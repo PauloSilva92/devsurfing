@@ -10,7 +10,8 @@ const Field = {
   type: String,
   validate: [_validate, 'Password needs to be 6 characters long'],
   required: true,
-  set: _set
+  set: _set,
+  trim : true
 }
 
 module.exports = Field;

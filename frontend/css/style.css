@@ -1,0 +1,30 @@
+/*.singinform {
+	margin: 0 auto;
+	width : 500px;
+}*/
+nav {
+	background-color: white !important;
+}
+nav .navright{
+	color: black !important;
+	margin: 10px 10px 10px 10px !important;
+}
+nav .navright:hover{
+	color: black !important;
+}
+nav .navleft{
+	color: white !important;
+	margin: 10px 10px 10px 10px !important;
+}
+nav a:hover{
+	color: black !important;
+}
+.title{
+	text-align: center;
+}
+.imgheader{
+	height: 300px;
+	background-image: url('../img/imgheader.jpg');
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

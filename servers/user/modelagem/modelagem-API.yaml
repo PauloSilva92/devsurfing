@@ -1,5 +1,6 @@
 swagger: '2.0'
 
+# This is your document metadata
 info:
   version: "0.0.1"
   title: Devsurfing
@@ -16,8 +17,6 @@ definitions:
       email: 
         type: String
       password: 
-        type: String
-      username: 
         type: String
       followers: 
         type: Array
@@ -58,6 +57,24 @@ paths:
         201:
           description: 
             Cadastrou no banco de dados e retorna um jsonwebtoken para acesso as funcionaldiades do sistema ja efetuando o login
+    put:
+      summary: 
+        Recebe os dados para alterar do usuário atual
+      consumes:
+        um JSON com os dados a serem alterados
+      produces:
+        um jsonwebtoken
+      parameters:
+        - in: body
+          description: 
+            Um objeto json que é passado no corpo da requisicao
+          name: user
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        200:
+          description: devolve um estatus de ok e um novo jsonwebtoken baseado nas novas informações editadas
           
           
         

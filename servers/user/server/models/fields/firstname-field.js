@@ -9,7 +9,8 @@ const Field = {
 	set : _set,
 	get : _get,
 	required : true,
-	validate : [ _validate, 'Invalid Name' ]
+	validate : [ _validate, 'Invalid Name' ],
+	trim : true
 };
 
 module.exports = Field;
