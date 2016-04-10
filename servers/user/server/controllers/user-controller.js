@@ -6,7 +6,6 @@ function userData(email, callback){
   query.select("name email");
 
   query.exec(function(err, usr){
-  	console.log(usr);
     const token = usr.genToken(usr.email, usr.name);
     callback({token:token});
   });
@@ -14,14 +13,13 @@ function userData(email, callback){
 const create = function(_user,callback){
   User.create(_user,function(err, result){
     if(err){
-      callback({Error:'Não foi possivel salvar ' + err});
+      callback({message:'Não foi possivel salvar ' + err});
     }else if (result){
         userData(result.email, callback);
     };
   });
 }
 const _save = (_user, callback)=>{
-	console.log(_user.email)
     const queryEmail = User.findOne({'email':_user.email});
     queryEmail.exec(function(err, usr){
       if(err){
@@ -34,7 +32,25 @@ const _save = (_user, callback)=>{
     });
 };
 
+const _login = (_user, callback)=>{
+	const queryEmail = User.findOne({'email':_user.email});
+
+    queryEmail.exec(function(err, user){
+      if(err){
+        callback({Error:err});
+      }else if(user){
+        if(user.validPass(_user.password)){
+          userData(_user.email, callback);
+        }else{
+          callback({message:'Password incorreta'});
+        }
+      }else{
+        callback({message:'Usuário não encontrado'});
+      };
+    });
+};
 
 module.exports = {
-	save : _save
+	save : _save,
+	login : _login
 }

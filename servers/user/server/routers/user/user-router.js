@@ -21,13 +21,16 @@ const user = require('../../controllers/user-controller');
 
 router.post('/save',(req,res)=>{
 	const _user = req.body;
-	user.save(_user,(err, data)=>{
-		if(err){
-			res.json(err);
-		}else{
-			res.json(data).status(201);
-		};
+	user.save(_user,(data)=>{
+		res.json(data)
 	})
+});
+
+router.post('/login',(req, res)=>{
+	const _user = req.body;
+	user.save(_user,(data)=>{
+		res.json(data);
+	});
 });
 
 module.exports = router;

@@ -1,0 +1,14 @@
+<div class="loginForm">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Login</div>
+	  <div class="panel-body loginForm">
+	  	<form ng-controller="userController" name="loginForm">
+	  		<label for="email">Email</label>
+	  		<input class="form-control" type="email" ng-model="user.email" required></input>
+	  		<label for="password">Senha</label>
+	  		<input class="form-control" type="password" ng-model="user.password" required></input><br>
+	  		<button class="btn btn-default form-control" ng-disabled="loginForm.$invalid" ng-click="login(user)">Login</button>
+	  	</form>
+	  </div>
+	</div>	
+</div>

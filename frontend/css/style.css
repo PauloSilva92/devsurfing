@@ -1,7 +1,11 @@
-/*.singinform {
+.singinform {
 	margin: 0 auto;
 	width : 500px;
-}*/
+}
+.loginForm{
+	margin: 0 auto;
+	width : 500px;
+}
 nav {
 	background-color: white !important;
 }

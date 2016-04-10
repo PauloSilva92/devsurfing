@@ -28,7 +28,7 @@ userSchema.methods.genToken = (email, name)=>{
 		email : email,
 		name: name
 	};
-	return jwt.sign(user, process.env.SEGREDO);
+	return jwt.sign(user, 'zipute');
 } 
 userSchema.methods.validPass = (password)=> bcrypt.compareSync(password, this.password);
 
