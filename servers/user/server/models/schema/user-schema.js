@@ -23,8 +23,9 @@ const _user = {
 
 const userSchema = new Schema(_user);
 
-userSchema.methods.genToken = (email, name)=>{
+userSchema.methods.genToken = (_id,email, name)=>{
 	const user = {
+		_id : _id,
 		email : email,
 		name: name
 	};
@@ -33,7 +34,9 @@ userSchema.methods.genToken = (email, name)=>{
 userSchema.methods.validPass = function(password){
 	return bcrypt.compareSync(password, this.password);	
 };
-
+userSchema.methods.veriToken = function(token){
+	return jwt.verify(token,'zipute');
+};
 module.exports = userSchema;
 
 // mongoose.connect('mongodb://localhost/test');

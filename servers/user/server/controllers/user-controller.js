@@ -7,7 +7,7 @@ function userData(email, callback){
   query.select("name email");
 
   query.exec(function(err, usr){
-    const token = usr.genToken(usr.email, usr.name);
+    const token = usr.genToken(usr._id,usr.email, usr.name);
     callback({token:token});
   });
 };
@@ -54,7 +54,73 @@ const _login = (_user, callback)=>{
     });
 };
 
+const _read = ( token, callback)=>{
+	const newUser = new User();
+	try{
+		const decoded = newUser.veriToken(token);
+		if(decoded){
+			const queryUser = User.findOne({'_id':decoded._id});
+			queryUser.select("name email created_at following followers _id adress");
+			 queryUser.exec((err,usr)=>{
+				if(err){
+					callback({message: err});
+				}else if(usr){
+					callback(usr);
+				}else{
+					callback({message: "usuário não encontrado"});
+				};
+			});
+		}	
+	}catch(err){
+		callback({message:"Token Inválido"});
+	}
+};
+
+const _update = (token,mod,callback)=>{
+	const newUser = new User();
+	try{
+		const decoded = newUser.veriToken(token);
+		if(decoded){
+			newUser.update({'email':decoded.email},mod,(err,data)=>{
+				if(err){
+					callback({message:err});
+				}else if(data){
+					console.log(data);
+					callback({message: "modificado"});
+				}else{
+					callback("Usuário não encontrado");
+				}
+			});
+		}
+	}catch(err){
+		callback(err);
+	}
+};
+
+const _delete = (token, id,callback)=>{
+	const newUser = new User();
+	try{
+		const decoded = newUser.veriToken(token);
+		if(decoded._id === id){
+			User.remove({'email':decoded.email},(err,data)=>{
+				if(err){
+					callback({message: err});
+				}else if(data){
+					callback({message: "Deletado"});
+				}else{
+					callback({message: "Usuário não encontrado"});
+				}
+			});
+		}
+	}catch(err){
+		callback(err);
+	}
+};
+
 module.exports = {
 	save : _save,
-	login : _login
-}
+	login : _login,
+	read : _read,
+	update : _update,
+	delete : _delete
+};
