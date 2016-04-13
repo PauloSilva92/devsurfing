@@ -23,6 +23,12 @@ nav .navleft{
 nav a:hover{
 	color: black !important;
 }
+nav a:active{
+	color: black !important;
+}
+nav a:focus{
+	color: black !important;
+}
 .title{
 	text-align: center;
 }

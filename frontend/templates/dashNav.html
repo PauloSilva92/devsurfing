@@ -1,0 +1,22 @@
+<nav ng-controller="userController">
+	<div class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav pull-left">
+				<li><a class="btn btn-default visible-lg visible-md visible-sm navright" href="/dashboard.html">Home</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li class="visible-lg visible-md">
+					<a href="">{{user.name.firstname | capitalize}} {{user.name.lastname | capitalize}}</a>
+				</li>
+				<li>
+					<button class="btn btn-primary dropdown-toogle navleft" data-toggle="dropdown" href="./login.html">Menu <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#/editar">Editar</a></li>
+						<li class="divider"></li>
+						<li><a ng-click="logout()">Sair</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>	
+</nav>

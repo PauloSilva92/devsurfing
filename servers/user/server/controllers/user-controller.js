@@ -81,16 +81,20 @@ const _update = (token,mod,callback)=>{
 	try{
 		const decoded = newUser.veriToken(token);
 		if(decoded){
-			newUser.update({'email':decoded.email},mod,(err,data)=>{
+			const queryUp = User.update({'email':decoded.email}, mod);
+
+				queryUp.exec((err,data)=>{
 				if(err){
 					callback({message:err});
 				}else if(data){
 					console.log(data);
 					callback({message: "modificado"});
 				}else{
-					callback("Usuário não encontrado");
+					callback({message : "Usuário não encontrado"});
 				}
 			});
+		}else{
+			callback({message: "Token Inválido"})
 		}
 	}catch(err){
 		callback(err);

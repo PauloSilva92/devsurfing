@@ -1,3 +1,3 @@
 (function(){
-	angular.module('myapp',[]);
+	angular.module('myapp',['ngRoute']);
 })();

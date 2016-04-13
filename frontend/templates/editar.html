@@ -1,0 +1,24 @@
+<div class="singinform" ng-controller="userController">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Edite suas informações</div>
+	  <div class="panel-body signinForm">
+	  	<button class="btn btn-danger" ng-click="delete()">Deletar</button>
+	  	<form name="editForm">
+	  		<label for="firstname">Nome</label>
+	  		<input class="form-control" type="text" ng-model="user.name.firstname"></input>
+	  		<label for="lastname">Sobrenome</label>
+	  		<input class="form-control" type="text" ng-model="user.name.lastname"></input>
+	  		<label for="email">Email</label>
+	  		<input class="form-control" type="email" ng-model="user.email"></input>
+	  		<label for="adress.city">Cidade</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.city"></input>
+	  		<label for="adress.state">Estado</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.state"></input>
+	  		<label for="country">Pais</label>
+	  		<input class="form-control" type="text" ng-model="user.adress.country"></input><br>
+	  		<button class="form-control btn btn-default" ng-disabled="editForm.$invalid" ng-click="edit(user)">Editar</button>	
+	  		
+	  	</form>
+	  </div>
+	</div>	
+</div>
