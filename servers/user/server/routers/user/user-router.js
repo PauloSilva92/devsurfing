@@ -39,6 +39,18 @@ router.get('/data',(req,res)=>{
 	};
 });
 
+router.get('/:id',(req,res)=>{
+	const _id = req.params.id
+	const _token = req.headers.token;
+	if(!req.headers.token){
+		res.status(401).json({message:"Não autorizado"});
+	}else{
+		user.get(_id,(data)=>{
+			res.json(data);
+		});
+	};
+});
+
 router.delete('/:id',(req,res)=>{
 	const _token = req.headers.token;
 	const _id = req.params.id;

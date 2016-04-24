@@ -2,7 +2,11 @@
 	<div class="navbar navbar-default">
 		<div class="container">
 			<ul class="nav navbar-nav pull-left">
-				<li><a class="btn btn-default visible-lg visible-md visible-sm navright" href="/dashboard.html">Home</a></li>
+				<li><a class=" visible-lg visible-md visible-sm navright" href="/dashboard.html#/">Home</a></li>
+				<li class="visible-xs">
+					<a href="">{{user.name.firstname | capitalize}} {{user.name.lastname | capitalize}}</a>
+				</li>
+
 			</ul>
 			<ul class="nav navbar-nav pull-right">
 				<li class="visible-lg visible-md">

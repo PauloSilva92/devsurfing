@@ -76,6 +76,20 @@ const _read = ( token, callback)=>{
 	}
 };
 
+const _get = (_id,callback)=>{
+	const queryUser = User.findOne({'_id':_id});
+	queryUser.select("name email created_at following followers _id adress");
+	 queryUser.exec((err,usr)=>{
+		if(err){
+			callback({message: err});
+		}else if(usr){
+			callback(usr);
+		}else{
+			callback({message: "usuário não encontrado"});
+		};
+	});
+};
+
 const _update = (token,mod,callback)=>{
 	const newUser = new User();
 	try{
@@ -126,5 +140,6 @@ module.exports = {
 	login : _login,
 	read : _read,
 	update : _update,
-	delete : _delete
+	delete : _delete,
+	get : _get
 };

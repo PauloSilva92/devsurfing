@@ -1,10 +1,10 @@
 .singinform {
 	margin: 0 auto;
-	width : 500px;
+	max-width : 60%;
 }
 .loginForm{
 	margin: 0 auto;
-	width : 500px;
+	max-width : 60%;
 }
 nav {
 	background-color: white !important;

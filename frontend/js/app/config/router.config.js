@@ -7,5 +7,8 @@
 			$routeProvider.when('/editar',{
 				templateUrl : 'templates/editar.html'
 			});
+			$routeProvider.when('/',{
+				templateUrl : 'templates/feed.html'
+			});
 		}
 })()

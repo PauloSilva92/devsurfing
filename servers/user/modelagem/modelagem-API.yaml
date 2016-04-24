@@ -42,7 +42,7 @@ paths:
       summary:
         Salva os dados do usuario que esta efetuando o cadastro
       consumes: 
-        - application/json
+       - application/json
       produces:
         - application/json
       parameters:
@@ -103,20 +103,41 @@ paths:
             O usuários existe no banco de dados e um jsonwebtoken para acesso as funcionalidades do sitema é retornado asdsad
   
   
-  /user/id:
+  /user/data:
     get:
       summary: 
-        Recebe um ID pela url, e um jsonwebtoken pela header e retorna os dados do usuário específico
+        Recebe um jsonwebtoken pela header e retorna os dados do usuário específico
       produces:
         - application/json
       parameters:
-        $ref: '#/definitions/user_id'
+        
       responses:
         200:
           description: retorna os dados do usuários (email, id, nome, endereço, seguidores e seguindo)
+  
+  
+  /user/:id:
+    get:
+      summary: 
+        Recebe um jsonwebtoken pela header e retorna os dados do usuário específico
+      produces:
+        - application/json
+      parameters:
+        
+      responses:
+        200:
+          description: 
+            retorna os dados do usuários (email, id, nome, endereço, seguidores e seguindo)
+          
     delete:
-      summary: Deleta o usuário específico
-      description: pega o id do usuário pela url e deleta-o se o jsonwebtoken passado pela header for dele próprio
+      summary: 
+        Deleta o usuário específico
+      produces:
+        - application/json
+      description: 
+        pega o id do usuário pela url e deleta-o se o jsonwebtoken passado pela header for dele próprio
       responses:
         200:
           description: retorna uma mensagem informando que deletou o usuário e redireciona para a pagina inicial
+          
+    
