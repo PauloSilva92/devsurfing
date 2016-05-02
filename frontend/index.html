@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body ng-controller="indexController">
 	<nav-dir></nav-dir>
 	<h1 class="title">Devsurfing</h1>
 	<div class="container">
@@ -19,7 +19,7 @@
 		</div>		
 	</div>
 	
-
+	
 	<!-- Angular -->
 	<script src="./bower_components/angular/angular.min.js"></script>
 	<!-- Angular-route -->
@@ -29,5 +29,15 @@
 	<!-- Directives -->
 	<script src="./js/app/directives/nav.directive.js"></script>
 	<script src="./js/app/directives/form.directive.js"></script>
+	
+	<script>
+		angular.module('myapp').controller('indexController', ['$window', function($window){
+			(function(){
+				if($window.location.pathname == '/' && $window.localStorage.getItem('token')){
+					$window.location.assign('dashboard.html');
+				}
+			})();	
+		}])	
+	</script>
 </body>
 </html>

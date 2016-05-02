@@ -54,7 +54,7 @@ const _delete = (_id, callback)=>{
        };
     });
 }
-return {
+module.exports = {
      save : _save,
      update : _update,
      getAll : _getAll,

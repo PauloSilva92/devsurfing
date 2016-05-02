@@ -1,31 +1,37 @@
-const adverController = require('../controllers/advert-controller');
+const advertController = require('../controllers/advert-controller');
 const router = require('express').Router();
 
 
-const callback = (data)=>{
-        res.json(data);
-    };
-
 router.get('/:advert_id',(req, res)=>{
     const _id = req.params.advert_id;
-    adverController.get(_id, callback)
+    advertController.get(_id, function (data){
+        res.json(data);
+    })
 });
 router.get('/:user_id',(req, res)=>{
     const _id = req.params.user_id;
-    adverController.getAll(_id, callback);
+    advertController.getAll(_id, function (data){
+        res.json(data);
+    });
 });
 router.put('/save/:advert_id',(req, res)=>{
     const _id = req.params.advert_id;
     const _ad = req.body;
-    adverController.save(_id,_ad, callback);
+    advertController.update(_id,_ad, function (data){
+        res.json(data);
+    });
 });
 router.post('/save',(req, res)=>{
     const _ad = req.body;
-    adverController.update(_ad, callback);
+    advertController.save(_ad, function (data){
+        res.json(data);
+    });
 });
 router.delete('/:advert_id',(req, res)=>{
     const _id = req.params.user_id;
-    adverController.delete(_id, callback);
+    advertController.delete(_id, function (data){
+        res.json(data);
+    });
 });
 
 module.exports = router;
