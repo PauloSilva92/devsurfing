@@ -14,8 +14,8 @@ router.get('/:user_id',(req, res)=>{
     const _id = req.params.user_id;
     adverController.getAll(_id, callback);
 });
-router.put('/save/:user_id',(req, res)=>{
-    const _id = req.params.user_id;
+router.put('/save/:advert_id',(req, res)=>{
+    const _id = req.params.advert_id;
     const _ad = req.body;
     adverController.save(_id,_ad, callback);
 });
