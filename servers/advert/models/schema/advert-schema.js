@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-const _advert = advert : {
+const _advert = {
 	user_id : String,
 	text : String,
 	tags : [String]

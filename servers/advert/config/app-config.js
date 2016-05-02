@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const morgan      = require('morgan');
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 
 
