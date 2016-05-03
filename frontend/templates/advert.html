@@ -4,7 +4,7 @@
         <div class="panel-body">
             <form name="adForm">
                 <label for="text">Escreva seu anuncio</label>
-                <input class="form-control" type="text" ng-model="advert.text" required></input><br>
+                <textarea class="form-control" name="text" ng-model="advert.text" id="" cols="30" rows="5" required></textarea><br>
                 <label for="tags">tags</label>
                 <input class="form-control" type="text" ng-model="advert.tags" required></input><br>
                 <button class="btn btn-default form-control" ng-disabled="adForm.$invalid" ng-click="save(advert)">Anunciar</button>
