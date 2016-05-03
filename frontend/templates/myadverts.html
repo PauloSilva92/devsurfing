@@ -1,0 +1,8 @@
+<div class="container" ng-controller="adController">
+    <div class="panel panel-default" ng-repeat="advert in adverts">
+        <div class="panel-body">
+            <h2 >{{advert.user_name | capitalize}}</h2>
+            <p>{{advert.text}}</p>
+        </div>
+    </div>
+</div>

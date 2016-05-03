@@ -10,6 +10,9 @@
 			$routeProvider.when('/advert',{
 				templateUrl : 'templates/advert.html'
 			});
+			$routeProvider.when('/myadverts',{
+				templateUrl : 'templates/myadverts.html'
+			});
 			$routeProvider.when('/',{
 				templateUrl : 'templates/feed.html'
 			});

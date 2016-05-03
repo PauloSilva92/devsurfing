@@ -13,7 +13,7 @@
 
 			const _get = (id)=> $http.get('http://localhost:4000/advert/'+ id);
             
-            const _getAll = (id)=> $http.get('http://localhost:4000/advert/'+ id);
+            const _getAll = (id)=> $http.get('http://localhost:4000/advert/getall/'+ id);
 
 			const _delete = (id)=> $http.delete('http://localhost:4000/advert/'+id);
 			return {

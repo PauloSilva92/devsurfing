@@ -35,7 +35,7 @@ const _get = (_id, callback)=>{
     });
 }
 const _getAll = (_user_id, callback)=>{
-    const query = Advert.find({'user_id': _user_id});
+    const query = Advert.find({'user_id': _user_id}).sort({created_at: -1});
     query.exec((err,data)=>{
        if(err){
            callback({message: 'error'});
@@ -57,6 +57,7 @@ const _delete = (_id, callback)=>{
 module.exports = {
      save : _save,
      update : _update,
+     get : _get,
      getAll : _getAll,
      delete : _delete
 };

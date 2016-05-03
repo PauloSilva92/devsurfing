@@ -8,7 +8,7 @@ router.get('/:advert_id',(req, res)=>{
         res.json(data);
     })
 });
-router.get('/:user_id',(req, res)=>{
+router.get('/getall/:user_id',(req, res)=>{
     const _id = req.params.user_id;
     advertController.getAll(_id, function (data){
         res.json(data);

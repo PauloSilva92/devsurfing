@@ -44,6 +44,7 @@
 				$window.sessionStorage.setItem('country',$scope.user.adress.country);
 				$window.sessionStorage.setItem('city',$scope.user.adress.city);
 				$window.sessionStorage.setItem('state',$scope.user.adress.state);
+				$window.sessionStorage.setItem('nome',$scope.user.name.firstname + " " + $scope.user.name.lastname);
 			});
 		}
 

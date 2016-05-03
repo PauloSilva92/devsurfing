@@ -23,6 +23,7 @@
             advert.adress.country = $window.sessionStorage.getItem('country');
             advert.adress.city = $window.sessionStorage.getItem('city');
             advert.adress.state = $window.sessionStorage.getItem('state');
+            advert.user_name = $window.sessionStorage.getItem('nome');
             advert.tags = advert.tags.split(" ");
             
             return advert;
@@ -31,12 +32,12 @@
         function _save(advert){
             
             advert = advertConstructor(advert);
-            console.log(advert);
             
             adService.save(advert).then(function success(data){
-                console.log(data);
+                advert = {};
+                $window.location.assign('dashboard.html');
             }, function error(status){
-                if (status === 500) errorMessage();
+                errorMessage();
             });
         }
         
@@ -48,13 +49,14 @@
             });
         }
         
-        function _getAll(user_id){
+        function _getAll(){
+            const user_id = $window.sessionStorage.getItem('id');
             adService.getAll(user_id).then(function success(data){
-               console.log(data); 
+               $scope.adverts = data.data; 
             }, function error(){
                 errorMessage();
             });
-        }
+        };
         
         function _get(advert_id){
             adService.get(advert_id).then(function success(data){
@@ -71,5 +73,7 @@
                 errorMessage();
             });
         }
+        
+        _getAll();
     }
 })();
