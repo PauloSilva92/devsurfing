@@ -12,6 +12,15 @@
         $scope.getAll = _getAll;
         $scope.get = _get;
         $scope.delete = _delete;
+        $scope.isUser = isUser;
+        
+        function isUser(advert){
+            if($window.sessionStorage.getItem('id') == advert.user_id){
+                return true;
+            }else{
+                return false;
+            };
+        }
         
         function errorMessage(){
             swal('Não foi possível acessar o servidor');
@@ -35,19 +44,22 @@
             
             adService.save(advert).then(function success(data){
                 advert = {};
-                $window.location.assign('dashboard.html');
+                $window.location.assign('dashboard.html#/myadverts');
             }, function error(status){
                 errorMessage();
             });
         }
         
-        function _update(advert_id, advert){
-            adService.update(advert_id,advert).then(function success(data){
-               console.log(data); 
-            }, function error(){
-                errorMessage();
-            });
-        }
+        
+        // function _update(advert_id, advert){
+            
+        //     console.log($scope.advert);
+        //     // adService.edit(advert_id,advert).then(function success(data){
+        //     //    console.log(data); 
+        //     // }, function error(){
+        //     //     errorMessage();
+        //     // });
+        // }
         
         function _getAll(){
             const user_id = $window.sessionStorage.getItem('id');
@@ -67,12 +79,21 @@
         }
         
         function _delete(advert_id){
-            adService.delete(advert_id).then(function success(data){
-               console.log(data); 
-            }, function error(){
-                errorMessage();
-            });
-        }
+            swal({
+                title: "Tem certeza disso?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim",
+                closeOnConfirm: true,
+                html: false
+            }, 
+              function(){
+                adService.delete(advert_id).then(function success(data){
+                    $window.location.reload();
+                });  
+              }
+            )}
         
         _getAll();
     }

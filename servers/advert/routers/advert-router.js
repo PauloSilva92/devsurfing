@@ -28,7 +28,8 @@ router.post('/save',(req, res)=>{
     });
 });
 router.delete('/:advert_id',(req, res)=>{
-    const _id = req.params.user_id;
+    const _id = req.params.advert_id;
+    console.log
     advertController.delete(_id, function (data){
         res.json(data);
     });

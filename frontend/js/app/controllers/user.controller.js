@@ -39,7 +39,6 @@
 		function get(){
 			userService.get().then(function success(data){
 				$scope.user = data.data;
-				console.log($scope.user.adress);
 				$window.sessionStorage.setItem('id',$scope.user._id);
 				$window.sessionStorage.setItem('country',$scope.user.adress.country);
 				$window.sessionStorage.setItem('city',$scope.user.adress.city);

@@ -1,8 +1,21 @@
 <div class="container" ng-controller="adController">
-    <div class="panel panel-default" ng-repeat="advert in adverts">
-        <div class="panel-body">
-            <h2 >{{advert.user_name | capitalize}}</h2>
-            <p>{{advert.text}}</p>
+    <div class="panel">
+			<h3>Meus anúncios</h3>
+        <div class="panel panel-default" ng-repeat="advert in adverts">
+            <div class="panel-body">
+                <div class=" col-lg-6 col-md-6 col-sm-12">
+                    <h2 >{{advert.user_name | capitalize}}</h2>
+                    <p>{{advert.text}}</p>
+                    <strong> tags: </strong>
+                    <div ng-repeat="tag in advert.tags">
+                        {{tag}}
+                    </div>    
+                </div>
+                <br>
+                <div  class="col-lg-6 col-md-6 col-sm-12">
+                    <button class="btn btn-danger" ng-click="delete(advert._id)">Excluir</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
