@@ -14,7 +14,7 @@ const _save = (message,callback)=>{
     });
 };
 const _update = (mess_id,mod,callback)=>{
-    const query = Message.update({_id : mess_id} ,{$pushAll : {messages : mod}});
+    const query = Message.update({_id : mess_id} ,{$push : {messages : {$each : mod} } });
     
     query.exec((err, data)=>{
         if(err){
