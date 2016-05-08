@@ -1,0 +1,66 @@
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: Devsurfing-advert
+
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /:advert_id:
+    # This is a HTTP operation
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Obtem determinado anúncio.
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: advert_id
+          in: query
+          description: o id do anúncio
+          required: true
+          type: string
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Resposta de sucesso, devolve um JSon
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: Advert
+            type: object
+            properties:
+              user_id:
+                type: string
+              text:
+                type: boolean
+              tags:
+                type: string
+    delete:
+      description: 
+        Deleta o usuário com o id que foi passado na url
+      responses:
+        200:
+          description: OK
+    
+  /save:
+    post:
+      description: 
+        Recebe um objeto que com todos os dados para criar o anúncio
+      responses:
+        200:
+          description: OK
+          
+  /save/advert_id:
+    put:
+      description: 
+        Recebe um objeto de que modificará o texto e tags do anúncio
+      responses:
+        200:
+          description: OK
+    
+      
