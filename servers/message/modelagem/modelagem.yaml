@@ -9,9 +9,7 @@ info:
 paths:
   
   /:message_id:
-    
     get:
-      
       description: |
         Obtem determinada conversa
       parameters:
@@ -24,14 +22,28 @@ paths:
       responses:
         200:
           description: Resposta de sucesso, devolve um JSon
-          
-    
+           
   /save:
-    put:
+    post:
       description: |
-        Recebe um objeto que com todos os dados para criar ou modificar a conversa
+        Recebe um objeto que com todos os dados para criar a conversa
       responses:
         200:
           description: OK
-    
+  
+  /save/:message_id:
+    put:
+      description: |
+        Recebe um objeto que com todos os dados para inserir uma nova mensagem na conversa
+      responses:
+        200:
+          description: OK
+          
+  /getall/:user_id:
+    get:
+      description: |
+        obtem todas as conversas de determinado usuário
+      responses:
+        200:
+          description: OK
       

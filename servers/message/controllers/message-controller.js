@@ -40,8 +40,23 @@ const _get = (mess_id,callback)=>{
     });
 };
 
+const _getAll = (user_id,callback)=>{
+    const query = Message.find({user_id : user_id});
+    
+    query.exec((err, data)=>{
+        if(err){
+            callback({message: err.toString()});
+        }else if(data){
+            callback(data);
+        }else{
+            callback({message : 'deu treta'});
+        };
+    });
+};
+
 module.exports = {
     save : _save,
     update : _update,
-    get : _get
+    get : _get,
+    getAll : _getAll
 };

@@ -68,5 +68,20 @@ function save() {
     });
 }
 
+function getAll(){
+    controller.getAll('12312331',function(data){
+        if(data.message){
+            console.log(data.message);
+            mongoose.connection.close();
+        }else{
+            console.log("TODOS");
+            // console.log(data);
+            console.log(data.forEach((curr)=>{
+                console.log(curr.messages);
+            }));
+        };
+    });
+}
 
-save();
+
+getAll();
