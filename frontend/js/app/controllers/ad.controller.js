@@ -51,15 +51,15 @@
         }
         
         
-        // function _update(advert_id, advert){
+        function _update(advert_id, advert){
             
-        //     console.log($scope.advert);
-        //     // adService.edit(advert_id,advert).then(function success(data){
-        //     //    console.log(data); 
-        //     // }, function error(){
-        //     //     errorMessage();
-        //     // });
-        // }
+            console.log($scope.advert);
+            adService.edit(advert_id,advert).then(function success(data){
+               console.log(data); 
+            }, function error(){
+                errorMessage();
+            });
+        }
         
         function _getAll(){
             const user_id = $window.sessionStorage.getItem('id');
@@ -72,9 +72,7 @@
         
         function _get(advert_id){
             adService.get(advert_id).then(function success(data){
-               console.log(data); 
-            }, function error(){
-                errorMessage();
+               $scope.advert = data.data; 
             });
         }
         
