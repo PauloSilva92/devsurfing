@@ -2,11 +2,11 @@ const controller = require('../controllers/advert-controller');
 require('../config/db-config');
 
 
-const objFind = { tags : "javascrpt" };
+const searchString = /torres/i;
 
-function getTag(){
-    controller.getTag(objFind, function(data){
+function search(){
+    controller.search(searchString, function(data){
         console.log(data);
     });
 }
-getTag();
+search();

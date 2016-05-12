@@ -1,11 +1,11 @@
 const advertController = require('../controllers/advert-controller');
 const router = require('express').Router();
 
-router.get('/tag/:tag_name',(req,res)=>{
-   if(req.params.tag_name != ""){
-       console.log(req.params.tag_name)
-       const objFind = { tags : req.params.tag_name };
-       advertController.getTag(objFind, (data)=>{
+router.get('/search/:searchString',(req,res)=>{
+   if(req.params.searchString != ""){
+       //converte a string de busca em uma Expressão Regular
+       const searchString = new RegExp(req.params.searchString,'i');
+       advertController.search(searchString, (data)=>{
           res.json(data); 
        });
    }else{

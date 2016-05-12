@@ -44,9 +44,11 @@ const _getAll = (_user_id, callback)=>{
        };
     });
 }
-const _getTag = (objFind, callback)=>{
+const search = (searchString, callback)=>{
+    console.log(searchString);
     const message = {message : "Não foi possivel encontrar"};
-    const queryTag = Advert.find(objFind).sort({created_at: -1});
+    const query = { $or : [{'adress.city' : searchString}, {'adress.country' : searchString}, { tags : searchString }] };
+    const queryTag = Advert.find(query).sort({created_at: -1});
     queryTag.exec((err,data)=>{
         if(err){
             callback(message);
@@ -72,6 +74,6 @@ module.exports = {
      update : _update,
      get : _get,
      getAll : _getAll,
-     getTag : _getTag,
+     search : search,
      delete : _delete
 };

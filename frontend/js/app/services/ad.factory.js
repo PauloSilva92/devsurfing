@@ -17,7 +17,7 @@
 
 			const _delete = (id)=> $http.delete('http://localhost:4000/advert/'+id);
 			
-			const _searchTag = (searchString)=> $http.get('http://localhost:4000/advert/tag/'+ searchString);
+			const _searchTag = (searchString)=> $http.get('http://localhost:4000/advert/search/'+ searchString);
 			return {
 				save : _save,
 				get: _get,
