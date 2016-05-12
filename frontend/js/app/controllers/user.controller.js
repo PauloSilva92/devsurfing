@@ -13,6 +13,7 @@
 		$scope.logout = logout;
 		$scope.edit = edit;
 		$scope.delete = _delete;
+		$scope.changePassword = changePassword;
 
 		function save(user){
 			userService.save(user).then(function success(data){
@@ -43,6 +44,7 @@
 				$window.sessionStorage.setItem('country',$scope.user.adress.country);
 				$window.sessionStorage.setItem('city',$scope.user.adress.city);
 				$window.sessionStorage.setItem('state',$scope.user.adress.state);
+				$window.sessionStorage.setItem('email',$scope.user.email);
 				$window.sessionStorage.setItem('nome',$scope.user.name.firstname + " " + $scope.user.name.lastname);
 			});
 		}
@@ -80,6 +82,17 @@
 					});
 				}
 			);
+		}
+		
+		function changePassword(old, user){
+			old.email = $window.sessionStorage.getItem('email');
+			userService.login(old).then(function success(data){
+				if(data.data.token){
+					userService.edit(user).then(function success(data){
+						swal(data.data.message);
+					});
+				}
+			});
 		}
 
 		(function isDash(){

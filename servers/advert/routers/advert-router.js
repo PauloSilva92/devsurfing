@@ -1,7 +1,17 @@
 const advertController = require('../controllers/advert-controller');
 const router = require('express').Router();
 
-
+router.get('/tag/:tag_name',(req,res)=>{
+   if(req.params.tag_name != ""){
+       console.log(req.params.tag_name)
+       const objFind = { tags : req.params.tag_name };
+       advertController.getTag(objFind, (data)=>{
+          res.json(data); 
+       });
+   }else{
+       res.json({message:'Não foi possivel encontrar'});
+   }
+});
 router.get('/:advert_id',(req, res)=>{
     const _id = req.params.advert_id;
     advertController.get(_id, function (data){

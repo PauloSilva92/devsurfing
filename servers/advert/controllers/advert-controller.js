@@ -44,6 +44,19 @@ const _getAll = (_user_id, callback)=>{
        };
     });
 }
+const _getTag = (objFind, callback)=>{
+    const message = {message : "Não foi possivel encontrar"};
+    const queryTag = Advert.find(objFind).sort({created_at: -1});
+    queryTag.exec((err,data)=>{
+        if(err){
+            callback(message);
+        }else if(data.length === 0){
+            callback(message);
+        }else{
+            callback(data);
+        };
+    });
+}
 const _delete = (_id, callback)=>{
     const query = Advert.remove({'_id':_id});
     query.exec((err,data)=>{
@@ -59,5 +72,6 @@ module.exports = {
      update : _update,
      get : _get,
      getAll : _getAll,
+     getTag : _getTag,
      delete : _delete
 };

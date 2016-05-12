@@ -92,6 +92,9 @@ const _get = (_id,callback)=>{
 
 const _update = (token,mod,callback)=>{
 	const newUser = new User();
+	if(mod.password){
+		mod.password = newUser.genPass(mod.password);
+	}
 	try{
 		const decoded = newUser.veriToken(token);
 		if(decoded){

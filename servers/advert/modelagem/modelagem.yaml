@@ -62,5 +62,13 @@ paths:
       responses:
         200:
           description: OK
+
+  /tag/:tag_name:
+    get:
+      description: |
+        Recebe uma string de busca via url e devolve um json com os anuncios encontrados com aquela tag. Caso não ache nada devolve uma mensagem informando que não encontrou.
+      responses:
+        200:
+          description: OK
     
       

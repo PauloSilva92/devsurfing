@@ -34,6 +34,7 @@ userSchema.methods.genToken = (_id,email, name)=>{
 userSchema.methods.validPass = function(password){
 	return bcrypt.compareSync(password, this.password);	
 };
+userSchema.methods.genPass = (v)=> bcrypt.hashSync(v,bcrypt.genSaltSync(9));
 userSchema.methods.veriToken = function(token){
 	return jwt.verify(token,'zipute');
 };

@@ -16,5 +16,8 @@
 			$routeProvider.when('/',{
 				templateUrl : 'templates/feed.html'
 			});
+			$routeProvider.when('/editpassword',{
+				templateUrl : 'templates/mudarSenha.html'
+			});
 		}
 })()
