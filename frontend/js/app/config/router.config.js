@@ -33,6 +33,19 @@
 					}
 				}
 			});
+			$routeProvider.when('/user/:user_id',{
+				templateUrl : 'templates/perfil.html',
+				controller : function($scope, user){
+					$scope.user = user;
+				},
+				resolve: {
+					user : function ($route,userService){
+						return userService.getOne($route.current.params.user_id).then(function success(data) {
+							return data.data;
+						});
+					}
+				}
+			});
 			$routeProvider.when('/edit',{
 				templateUrl : 'templates/editar.html'
 			});
