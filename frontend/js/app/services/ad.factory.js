@@ -16,12 +16,15 @@
             const _getAll = (id)=> $http.get('http://localhost:4000/advert/getall/'+ id);
 
 			const _delete = (id)=> $http.delete('http://localhost:4000/advert/'+id);
+			
+			const _searchTag = (searchString)=> $http.get('http://localhost:4000/advert/tag/'+ searchString);
 			return {
 				save : _save,
 				get: _get,
                 getAll: _getAll,
 				edit: _edit,
-				delete: _delete
+				delete: _delete,
+				searchTag : _searchTag
 			};
 		}
 })();

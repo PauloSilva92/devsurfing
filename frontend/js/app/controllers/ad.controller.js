@@ -5,14 +5,26 @@
         .module('myapp')
         .controller('adController', adController);
 
-    adController.$inject = ['$scope','adService','$window'];
-    function adController($scope, adService,$window) {
+    adController.$inject = ['$scope','adService','$window','$document'];
+    function adController($scope, adService,$window,$document) {
         $scope.save = _save;
         $scope.update = _update;
         $scope.getAll = _getAll;
         $scope.get = _get;
         $scope.delete = _delete;
         $scope.isUser = isUser;
+        $scope.searchTag = _searchTag;
+        
+        
+        function _searchTag(searhString){
+            if(searhString){
+                $window.location.assign('#/search/'+searhString);
+                document.getElementById('srch-term').value='';    
+            }else{
+                swal('Insira uma palavra para buscar');
+            }
+            
+        }
         
         function isUser(advert){
             if($window.sessionStorage.getItem('id') == advert.user_id){
