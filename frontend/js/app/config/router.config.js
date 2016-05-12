@@ -5,8 +5,19 @@
 			.config(routerConfig);
 
 		function routerConfig($routeProvider){
-			$routeProvider.when('/advert',{
-				templateUrl : 'templates/advert.html'
+			$routeProvider.when('/advert/:advert_id',{
+				templateUrl : 'templates/advert.html', 
+				controller : function(advert, $scope){
+					$scope.advert = advert;
+				},
+				resolve : {
+					advert : function($route, adService){
+						const advert_id = $route.current.params.advert_id;
+						return adService.get(advert_id).then(function success(data) {
+						 	return data.data;
+						});
+					}
+				}
 			});
 			$routeProvider.when('/search/:searchString',{
 				templateUrl : 'templates/searchAdverts.html',

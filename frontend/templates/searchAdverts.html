@@ -9,19 +9,13 @@
                     <p>{{advert.text}}</p>
                     <strong> tags: </strong>
                     <div ng-repeat="tag in advert.tags">
-                        {{tag}}
-                    </div>
-                    <div>
-                        <p><strong>Criado em:</strong> {{advert.created_at | date:'dd/MM/yyyy'}}</p>
+                        <a ng-href="#/search/{{tag}}">{{tag}}</a>
                     </div>
                 </div>
                 <br>
                 <div  class="col-lg-6 col-md-6 col-sm-12">
-                    <strong>Cidade: </strong><p>{{advert.adress.city}}</p>
-                    <strong>Estado:</strong> <p>{{advert.adress.state}}</p>
-                    <strong>País: </strong><p>{{advert.adress.country}}</p>
-                    <!--<a href="https://twitter.com/share" class="twitter-share-button" data-text="Visualize meu novo anúncio no Devsurfing" data-via="devsurfing" data-size="large" data-hashtags="devsurfing">Tweet</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
+                    <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                    <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
                 </div>
             </div>
         </div>
