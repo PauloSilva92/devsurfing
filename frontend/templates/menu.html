@@ -1,0 +1,33 @@
+<div class="panel" ng-controller="menuController">
+    <ul class="list-group">
+        <li class="list-group-item menu-item" ng-click="perfil()">
+            Perfil
+        </li>
+        <li class="list-group-item menu-item" ng-click="myadvert()">
+            Meus Anúncios
+        </li>
+        <li class="list-group-item menu-item" ng-click="newadvert()">
+            Novo Anúncio
+        </li>
+        <li class="list-group-item menu-item"ng-controller="userController" ng-click="logout()">
+            Sair
+        </li>
+    </ul>
+</div>
+<style>
+    .menu-item-op{
+        opacity: .70;
+        cursor : pointer;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $('.menu-item')
+            .mouseover(function(){
+                $(this).addClass('menu-item-op');
+            })
+            .mouseout(function(){
+                $(this).removeClass('menu-item-op');
+            })
+    })
+</script>

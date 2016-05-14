@@ -13,7 +13,18 @@
 </head>
 <body>
 	<dash-nav></dash-nav>
-	<div class="container" ng-view></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3 col-md-3 visible-lg visible-md">
+				<menu></menu>
+			</div>
+			<div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+				<div ng-view></div>			
+			</div>
+		</div>	
+	</div>
+	
+	
 	
 	<!-- SweetAlert -->
 	<script src="./bower_components/sweetalert/dist/sweetalert.min.js"></script>
@@ -29,6 +40,7 @@
 	<script src="./js/app/app/app.js"></script>
 	<!-- Directives -->
 	<script src="./js/app/directives/dashNav.directive.js"></script>
+	<script src="./js/app/directives/menu.directive.js"></script>
 	<!-- Services -->
 	<script src="./js/app/services/user.factory.js"></script>
 	<script src="./js/app/services/ad.factory.js"></script>
@@ -37,6 +49,7 @@
 	<!-- Controllers -->
 	<script src="./js/app/controllers/user.controller.js"></script>
 	<script src="./js/app/controllers/ad.controller.js"></script>
+	<script src="./js/app/controllers/menu.controller.js"></script>
 	<!-- Filters -->
 	<script src="./js/app/filters/capitalize.filter.js"></script>
 	<!-- Configs -->
@@ -51,4 +64,5 @@
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- -->
+		
 </html>

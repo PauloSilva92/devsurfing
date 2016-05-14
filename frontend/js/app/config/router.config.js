@@ -61,5 +61,9 @@
 			$routeProvider.when('/editpassword',{
 				templateUrl : 'templates/mudarSenha.html'
 			});
+			$routeProvider.when('/404',{
+				templateUrl : 'templates/404.html'
+			});
+			$routeProvider.otherwise({redirectTo:'/404'})
 		}
 })()

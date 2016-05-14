@@ -1,21 +1,24 @@
-<div class="container" ng-controller="adController">
+<div ng-controller="adController">
     <div class="panel">
 			<h3>Meus anúncios</h3>
         <div class="panel panel-default" ng-repeat="advert in adverts">
             <div class="panel-body">
-                <div class=" col-lg-6 col-md-6 col-sm-12">
-                    <p>{{advert.text}}</p>
-                    <strong> tags: </strong>
-                    <div ng-repeat="tag in advert.tags">
-                        <a ng-href="#/search/{{tag}}">{{tag}}</a>
+                <div class="row">
+                    <div class=" col-lg-6 col-md-6 col-sm-12">
+                        <p>{{advert.text}}</p>
+                        <strong> tags: </strong>
+                        <div ng-repeat="tag in advert.tags">
+                            <a ng-href="#/search/{{tag}}">{{tag}}</a>
+                        </div>
                     </div>
+                    <br>
+                    <div  class="col-lg-6 col-md-6 col-sm-12">
+                    <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                    <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
+                        <button class="btn btn-danger" ng-click="delete(advert._id)">Excluir</button>
+                    </div>    
                 </div>
-                <br>
-                <div  class="col-lg-6 col-md-6 col-sm-12">
-                   <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
-                   <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
-                    <button class="btn btn-danger" ng-click="delete(advert._id)">Excluir</button>
-                </div>
+                
             </div>
         </div>
     </div>
