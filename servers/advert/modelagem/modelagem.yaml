@@ -45,7 +45,7 @@ paths:
         Deleta o usuário com o id que foi passado na url
       responses:
         200:
-          description: OK
+          description: Responde com uma json informando que foi deletado o usuário
     
   /save:
     post:
@@ -53,7 +53,7 @@ paths:
         Recebe um objeto que com todos os dados para criar o anúncio
       responses:
         200:
-          description: OK
+          description: retorna status de ok
           
   /save/advert_id:
     put:
@@ -61,9 +61,9 @@ paths:
         Recebe um objeto de que modificará o texto e tags do anúncio
       responses:
         200:
-          description: OK
+          description: retorna um status de ok
 
-  /tag/:tag_name:
+  /search/:searchString:
     get:
       description: |
         Recebe uma string de busca via url e devolve um json com os anuncios encontrados com aquela tag. Caso não ache nada devolve uma mensagem informando que não encontrou.
