@@ -18,13 +18,17 @@
 			const _delete = (id)=> $http.delete('http://localhost:4000/advert/'+id);
 			
 			const _searchTag = (searchString)=> $http.get('http://localhost:4000/advert/search/'+ searchString);
+
+			const _listFollowed = (following)=> $http.post('http://localhost:4000/advert/listfollowed', following);
+
 			return {
 				save : _save,
 				get: _get,
                 getAll: _getAll,
 				edit: _edit,
 				delete: _delete,
-				searchTag : _searchTag
+				searchTag : _searchTag,
+				listFollowed : _listFollowed
 			};
 		}
 })();

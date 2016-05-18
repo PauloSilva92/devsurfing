@@ -35,8 +35,63 @@
 			});
 			$routeProvider.when('/user/:user_id',{
 				templateUrl : 'templates/perfil.html',
-				controller : function($scope, user){
+				controller : function($window,$route,$scope, user,userService){
 					$scope.user = user;
+					$scope.isUserLogged = isUserLogged;
+					$scope.follow = follow;
+					$scope.unfollow = unfollow;
+					$scope.isFollowing = isFollowing;
+					
+					(function getLogged(){
+						userService.get().then(function success(data){
+							$scope.userLogged = data.data;
+						})
+					})();
+
+					function isUserLogged(){
+						const userProfile = $route.current.params.user_id;
+						const userSession = $window.sessionStorage.getItem('id');
+						if(userSession !== userProfile){
+							return true;
+						}else{
+							return false;
+						};
+					}
+
+					function isFollowing(){
+						if($scope.userLogged){
+							let result = $scope.userLogged.following.indexOf($scope.user._id);
+							console.log(result);
+							if(result < 0){
+								return true;	
+							}else{
+								return false;	
+							}
+						}
+					}
+
+					function reloadPage(){
+						$route.reload();
+					}
+
+					function follow(value){
+						console.log(value);
+						const obj = {follow_id : value};
+						userService.follow(obj).then(function success(data){
+							console.log(data);
+							reloadPage();
+						});
+					}
+
+					function unfollow(value){
+						console.log(value);
+						const obj = {unfollow_id : value};
+						userService.unfollow(obj).then(function success(data){
+							console.log(data);
+							reloadPage();
+						});
+					}
+
 				},
 				resolve: {
 					user : function ($route,userService){
