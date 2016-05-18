@@ -71,7 +71,7 @@ const _delete = (_id, callback)=>{
 };
 
 const _listFollowed = (following,callback)=>{
-    const query = Advert.find({$or : [{tags : {$in :following }}, {user_id : {$in : following}}] });
+    const query = Advert.find({$or : [{tags : {$in :following }}, {user_id : {$in : following}}] }).sort({created_at: -1});
     query.exec((err,data)=>{
         if(err){
             callback({message:err});

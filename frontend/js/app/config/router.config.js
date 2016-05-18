@@ -61,7 +61,6 @@
 					function isFollowing(){
 						if($scope.userLogged){
 							let result = $scope.userLogged.following.indexOf($scope.user._id);
-							console.log(result);
 							if(result < 0){
 								return true;	
 							}else{
@@ -75,19 +74,15 @@
 					}
 
 					function follow(value){
-						console.log(value);
 						const obj = {follow_id : value};
 						userService.follow(obj).then(function success(data){
-							console.log(data);
 							reloadPage();
 						});
 					}
 
 					function unfollow(value){
-						console.log(value);
 						const obj = {unfollow_id : value};
 						userService.unfollow(obj).then(function success(data){
-							console.log(data);
 							reloadPage();
 						});
 					}
@@ -118,6 +113,23 @@
 			});
 			$routeProvider.when('/404',{
 				templateUrl : 'templates/404.html'
+			});
+			$routeProvider.when('/',{
+				templateUrl : 'templates/feed.html',
+				controller: function($scope, $route,following,adService){
+					if(following.length > 0){
+						adService.listFollowed(following).then(function(data){
+							$scope.adverts = data.data;
+						});
+					};
+				},
+				resolve : {
+					following : function(userService){
+						return userService.get().then(function(data){
+							return data.data.following;
+						})
+					}
+				}
 			});
 			$routeProvider.otherwise({redirectTo:'/404'})
 		}
