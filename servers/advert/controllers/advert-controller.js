@@ -68,6 +68,19 @@ const _delete = (_id, callback)=>{
            callback(data);
        };
     });
+};
+
+const _listFollowed = (following,callback)=>{
+    const query = Advert.find({$or : [{tags : {$in :following }}, {user_id : {$in : following}}] });
+    query.exec((err,data)=>{
+        if(err){
+            callback({message:err});
+        }else if(data.length === 0){
+            callback({message:'Nada foi encontrado'});
+        }else{
+            callback(data);
+        };
+    });
 }
 module.exports = {
      save : _save,
@@ -75,5 +88,6 @@ module.exports = {
      get : _get,
      getAll : _getAll,
      search : search,
-     delete : _delete
+     delete : _delete,
+     listFollowed : _listFollowed
 };

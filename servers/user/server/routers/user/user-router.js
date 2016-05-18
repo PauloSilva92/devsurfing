@@ -63,5 +63,29 @@ router.delete('/:id',(req,res)=>{
 	};
 });
 
+router.put('/follow',(req,res)=>{
+	const _mod = {$push : {following: req.body.follow_id}};
+	const _token = req.headers.token;
+	if(!req.headers.token){
+		res.status(401).json({message:"Não autorizado"});
+	}else{
+		user.update(_token, _mod, (data)=>{
+			res.json(data);
+		});	
+	};
+});
+
+router.put('/unfollow',(req,res)=>{
+	const _mod = {$pull : {following: req.body.unfollow_id}};
+	const _token = req.headers.token;
+	if(!req.headers.token){
+		res.status(401).json({message:"Não autorizado"});
+	}else{
+		user.update(_token, _mod, (data)=>{
+			res.json(data);
+		});	
+	};
+});
+
 
 module.exports = router;

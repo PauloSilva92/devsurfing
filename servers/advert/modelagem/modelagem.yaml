@@ -70,5 +70,15 @@ paths:
       responses:
         200:
           description: OK
+  
+  /listfollowed:
+    post:
+      summary: 
+        Retorna os anúncios das tags e usuários seguidas
+      description: 
+        Recebe um array de tags e ids de usuários e retronar um json com um array de anúncios encontrados
+      responses:
+        200:
+          description: Retorna um json contendo um array de anúncios encontrados com as tags e ids de usuários passados
     
       

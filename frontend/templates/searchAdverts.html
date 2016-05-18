@@ -5,7 +5,7 @@
      <div class="panel panel-default">
             <div class="panel-body">
                 <div class=" col-lg-6 col-md-6 col-sm-12">
-                    <h3 ng-controller="userController"><a ng-href="#/user/{{user._id}}">{{user.name.firstname | capitalize}}</a></h3>
+                    <h3><a ng-href="#/user/{{advert.user_id}}">{{advert.user_name | capitalize}}</a></h3>
                     <p>{{advert.text}}</p>
                     <strong> tags: </strong>
                     <div ng-repeat="tag in advert.tags">

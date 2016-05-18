@@ -60,7 +60,7 @@ const _read = ( token, callback)=>{
 		const decoded = newUser.veriToken(token);
 		if(decoded){
 			const queryUser = User.findOne({'_id':decoded._id});
-			queryUser.select("name email created_at following followers _id adress");
+			queryUser.select("name email created_at following _id adress");
 			 queryUser.exec((err,usr)=>{
 				if(err){
 					callback({message: err});
@@ -91,25 +91,27 @@ const _get = (_id,callback)=>{
 };
 
 const _update = (token,mod,callback)=>{
+	
 	const newUser = new User();
 	if(mod.password){
 		mod.password = newUser.genPass(mod.password);
 	}
 	try{
+		
 		const decoded = newUser.veriToken(token);
 		if(decoded){
 			const queryUp = User.update({'email':decoded.email}, mod);
-
+			
 				queryUp.exec((err,data)=>{
-				if(err){
-					callback({message:err});
-				}else if(data){
-					console.log(data);
-					callback({message: "modificado"});
-				}else{
-					callback({message : "Usuário não encontrado"});
-				}
-			});
+					if(err){
+						callback({message:err});
+					}else if(data){
+						console.log(data);
+						callback({message: "modificado"});
+					}else{
+						callback({message : "Usuário não encontrado"});
+					}
+				});
 		}else{
 			callback({message: "Token Inválido"})
 		}
@@ -137,6 +139,7 @@ const _delete = (token, id,callback)=>{
 		callback(err);
 	}
 };
+
 
 module.exports = {
 	save : _save,

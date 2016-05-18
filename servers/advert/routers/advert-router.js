@@ -44,5 +44,11 @@ router.delete('/:advert_id',(req, res)=>{
         res.json(data);
     });
 });
+router.post('/listfollowed',(req,res)=>{
+   const following = req.body.following;
+   advertController.listFollowed(following,(data)=>{
+      res.json(data); 
+   });
+});
 
 module.exports = router;

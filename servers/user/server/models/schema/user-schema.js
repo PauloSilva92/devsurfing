@@ -15,7 +15,6 @@ const _user = {
 		state : require('../fields/state-field.js'),
 		country : require('../fields/country-field.js')
 	},
-	followers : [String],
 	following : [String],
 	created_at : require('../fields/created_at-field.js')
 };

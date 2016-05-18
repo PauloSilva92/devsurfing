@@ -1,9 +1,17 @@
 <div class="row">
-	<div class="col-lg-8 col-md-8 col-sm-12">
-		<h3>{{user.name.firstname | capitalize}} {{user.name.lastname | capitalize}}</span>
+	<div class="text-center">
+		<h2>{{user.name.firstname | capitalize}} {{user.name.lastname | capitalize}}</h2>
+		<button class="btn btn-success">Seguir</button>
+		<hr>
+		<section id="info">
+			<h4>Informações</h4>
+			<p>
+				<strong>Mora em: </strong> {{user.adress.city | capitalize}}, {{user.adress.state}}. {{user.adress.country | capitalize}}
+			</p>
+			<p>
+				<strong>Email:</strong> {{user.email}}	
+			</p>
+		</section>
+		<button class="btn btn-default">Enviar mensagem</button>
 	</div>
-	<div class="col-lg-4 col-md-4 col-sm-12">
-		<button class="btn btn-success">Mensagem</button>
-	</div>
-	
 </div>

@@ -139,5 +139,25 @@ paths:
       responses:
         200:
           description: retorna uma mensagem informando que deletou o usuário e redireciona para a pagina inicial
-          
-    
+            
+  /user/follow:
+      summary: 
+        Rota para seguir outro usuário ou tag
+      produces:
+        - application/json
+      description: 
+        adiciona o id ou nome de tag passado pelo corpo da requisição ao array de usuários e tags que o usuário atual segue
+      responses:
+        200:
+          description: OK
+
+  /user/unfollow:
+      summary: 
+        Rota para deixar de seguir outro usuário ou tag
+      produces:
+        - application/json
+      description: 
+        remove o id ou nome de tag passado pelo corpo da requisição ao array de usuários e tags que o usuário atual segue
+      responses:
+        200:
+          description: OK
