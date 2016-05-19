@@ -48,7 +48,7 @@ const search = (searchString, callback)=>{
     console.log(searchString);
     const message = {message : "Não foi possivel encontrar"};
     const query = { $or : [{'adress.city' : searchString}, {'adress.country' : searchString}, { tags : searchString }] };
-    const queryTag = Advert.find(query).sort({created_at: -1});
+    const queryTag = Advert.find(query).sort({created_at: -1}).limit(50);
     queryTag.exec((err,data)=>{
         if(err){
             callback(message);
@@ -71,7 +71,7 @@ const _delete = (_id, callback)=>{
 };
 
 const _listFollowed = (following,callback)=>{
-    const query = Advert.find({$or : [{tags : {$in :following }}, {user_id : {$in : following}}] }).sort({created_at: -1});
+    const query = Advert.find({$or : [{tags : {$in :following }}, {user_id : {$in : following}}] }).sort({created_at: -1}).limit(50);
     query.exec((err,data)=>{
         if(err){
             callback({message:err});

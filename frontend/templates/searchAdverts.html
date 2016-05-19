@@ -1,6 +1,10 @@
 <div ng-if="adverts.message">
     <h3>{{adverts.message}}</h3>
 </div>
+<h4 ng-show="isFollowing()">Siga a tag "{{tag}}" e receba os anúncios no seu feed</h4>
+<button ng-show="isFollowing()" ng-click="follow(tag)" class="btn btn-success">Seguir</button>
+<button ng-show="!isFollowing()" ng-click="unfollow(tag)" class="btn btn-danger">Deixar de Seguir</button>
+<hr>
 <div ng-repeat="advert in adverts" ng-if="!adverts.message">    
      <div class="panel panel-default">
             <div class="panel-body">

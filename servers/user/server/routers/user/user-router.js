@@ -64,7 +64,6 @@ router.delete('/:id',(req,res)=>{
 });
 
 router.put('/follow',(req,res)=>{
-	console.log(req.req.body.follow_id);
 	const _mod = {$push : {following: req.body.follow_id}};
 	const _token = req.headers.token;
 	if(!req.headers.token){

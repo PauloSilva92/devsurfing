@@ -21,8 +21,49 @@
 			});
 			$routeProvider.when('/search/:searchString',{
 				templateUrl : 'templates/searchAdverts.html',
-				controller : function(adverts,$scope){
+				controller : function($route,adverts,$scope, userService){
 					$scope.adverts = adverts;
+					$scope.follow = follow;
+					$scope.unfollow = unfollow;
+					$scope.isFollowing = isFollowing;
+					$scope.tag = $route.current.params.searchString;
+
+					
+					(function getLogged(){
+						userService.get().then(function success(data){
+							$scope.userLogged = data.data;
+						})
+					})();
+
+					function isFollowing(){
+						if($scope.userLogged){
+							let result = $scope.userLogged.following.indexOf($scope.tag);
+							if(result < 0){
+								return true;	
+							}else{
+								return false;	
+							}
+						}
+					}
+
+					function reloadPage(){
+						$route.reload();
+					}
+
+					function follow(value){
+						const obj = {follow_id : value};
+						userService.follow(obj).then(function success(data){
+							reloadPage();
+						});
+					}
+
+					function unfollow(value){
+						const obj = {unfollow_id : value};
+						userService.unfollow(obj).then(function success(data){
+							reloadPage();
+						});
+					}
+
 				},
 				resolve : {
 					adverts : function($route, adService){
