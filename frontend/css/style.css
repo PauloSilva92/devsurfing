@@ -1,6 +1,6 @@
 .singinform {
-	margin: 0 auto;
-	max-width : 60%;
+	margin: 0 auto !important;
+	max-width : 500px;
 }
 .login-form{
 	margin: 0 auto !important; 

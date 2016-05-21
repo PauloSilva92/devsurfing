@@ -1,25 +1,28 @@
 <div class="container">
-	<div class="panel panel-default">
-	  <div class="panel-heading">Cadastre-se</div>
-	  <div class="panel-body signinForm">
-	  	<form ng-controller="userController" name="signinForm">
-	  		<label for="firstname">Nome</label>
-	  		<input class="form-control" type="text" ng-model="user.name.firstname" required></input>
-	  		<label for="lastname">Sobrenome</label>
-	  		<input class="form-control" type="text" ng-model="user.name.lastname" required></input>
-	  		<label for="email">Email</label>
-	  		<input class="form-control" type="email" ng-model="user.email" required></input>
-	  		<label for="password">Senha</label>
-	  		<input class="form-control" type="password" ng-model="user.password" required></input>
-	  		<label for="adress.city">Cidade</label>
-	  		<input class="form-control" type="text" ng-model="user.adress.city" required></input>
-	  		<label for="adress.state">Estado</label>
-	  		<input class="form-control" type="text" ng-model="user.adress.state" required></input>
-	  		<label for="country">Pais</label>
-	  		<input class="form-control" type="text" ng-model="user.adress.country" required></input><br>
-	  		<button class="form-control btn btn-default" ng-disabled="signinForm.$invalid" ng-click="save(user)">Cadastrar</button>	
-	  		
-	  	</form>
-	  </div>
-	</div>	
+	<div class="singinform">
+		<div class="panel panel-default">
+		  <div class="panel-heading">Cadastre-se</div>
+			  <div class="panel-body">
+			  	<form ng-controller="userController" name="signinForm">
+			  		<label for="firstname">Nome</label>
+			  		<input class="form-control" type="text" ng-model="user.name.firstname" required></input>
+			  		<label for="lastname">Sobrenome</label>
+			  		<input class="form-control" type="text" ng-model="user.name.lastname" required></input>
+			  		<label for="email">Email</label>
+			  		<input class="form-control" type="email" ng-model="user.email" required></input>
+			  		<label for="password">Senha</label>
+			  		<input class="form-control" type="password" ng-model="user.password" required></input>
+			  		<label for="adress.city">Cidade</label>
+			  		<input class="form-control" type="text" ng-model="user.adress.city" required></input>
+			  		<label for="adress.state">Estado</label>
+			  		<input class="form-control" type="text" ng-model="user.adress.state" required></input>
+			  		<label for="country">Pais</label>
+			  		<input class="form-control" type="text" ng-model="user.adress.country" required></input><br>
+			  		<button class="form-control btn btn-default" ng-disabled="signinForm.$invalid" ng-click="save(user)">Cadastrar</button>	
+			  		
+			  	</form>
+			  </div>
+		</div>		
+	</div>
+	
 </div>
