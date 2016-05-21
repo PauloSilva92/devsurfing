@@ -2,9 +2,9 @@
 	margin: 0 auto;
 	max-width : 60%;
 }
-.loginForm{
-	margin: 0 auto;
-	max-width : 60%;
+.login-form{
+	margin: 0 auto !important; 
+	max-width: 400px;
 }
 nav {
 	background-color: white !important;
