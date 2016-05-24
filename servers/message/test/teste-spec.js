@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 require('../config/db-config');
 
 
-const obj = {user_id : '12312331',
-                     sent_id : '12313812321',
+const obj = {owner_id : '12312331',
+                     receiver_id : '12313812321',
                      messages : [
                         {
                             user_id : '1231231820389',
@@ -19,11 +19,11 @@ const obj = {user_id : '12312331',
               
 const arrayUp = [
                 {
-                    user_id : '657567',
+                    owner_id : '657567',
                     text: 'Isso é uma mensagem de update'
                 },
                 {
-                    user_id : '8978978978',
+                    owner_id : '8978978978',
                     text: 'Essa é outra mensagem de update'
                 }
                ];

@@ -28,6 +28,7 @@
 		}
 
 		function login(user){
+			console.log(user);
 			userService.login(user).then(function success(data){
 				if(data.data.token){
 					$window.localStorage.setItem('token',data.data.token);

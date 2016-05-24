@@ -11,10 +11,14 @@
                 $scope.perfil= perfil;
                 $scope.myadvert= myadvert;
                 $scope.newadvert = newadvert;
+                $scope.messages = messages;
                 
                 function perfil(){
                     const searchString = $window.sessionStorage.getItem('id');
                     $window.location.assign('#/user/'+searchString);
+                }
+                function messages(){
+                    $window.location.assign('#/messages');
                 }
                 function myadvert(){
                     $window.location.assign('#/myadverts');

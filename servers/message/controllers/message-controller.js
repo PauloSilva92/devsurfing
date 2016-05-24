@@ -41,7 +41,7 @@ const _get = (mess_id,callback)=>{
 };
 
 const _getAll = (user_id,callback)=>{
-    const query = Message.find({user_id : user_id});
+    const query = Message.find({$or: [ {owner_id : user_id}, {receiver_id : user_id} ]});
     
     query.exec((err, data)=>{
         if(err){
@@ -49,7 +49,7 @@ const _getAll = (user_id,callback)=>{
         }else if(data){
             callback(data);
         }else{
-            callback({message : 'deu treta'});
+            callback({message : 'Não possível encontrar nada'});
         };
     });
 };

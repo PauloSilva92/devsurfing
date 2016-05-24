@@ -23,7 +23,7 @@ paths:
         200:
           description: Resposta de sucesso, devolve um JSon
            
-  /save:
+  /:
     post:
       description: |
         Recebe um objeto que com todos os dados para criar a conversa
@@ -31,7 +31,7 @@ paths:
         200:
           description: OK
   
-  /save/:message_id:
+  /:message_id:
     put:
       description: |
         Recebe um objeto que com todos os dados para inserir uma nova mensagem na conversa
@@ -39,7 +39,7 @@ paths:
         200:
           description: OK
           
-  /getall/:user_id:
+  /all/:user_id:
     get:
       description: |
         obtem todas as conversas de determinado usuário

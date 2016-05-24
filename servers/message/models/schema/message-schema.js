@@ -7,8 +7,8 @@ const _message = {
 		text : String,
 		sent_at : {type : Date, default : Date.now}
 	}],
-	user_id : String,
-	sent_id : String
+	owner_id : String,
+	receiver_id : String
 }
 
 const messageSchema = Schema(_message);
