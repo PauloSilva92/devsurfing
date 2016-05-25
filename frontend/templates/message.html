@@ -1,0 +1,7 @@
+<form role="form" name="messageForm">
+    <div class="form-group input-group">
+        <i class="input-group-addon glyphicon glyphicon-envelope"></i>
+        <input class="form-control" type="text" ng-model="message.text" required></input>	
+    </div>
+    <button class="form-control" ng-disabled="messageForm.$invalid" ng-click=""><i class="glyphicon glyphicon-ok"></i> </button>
+</form>

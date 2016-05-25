@@ -14,6 +14,6 @@
 				<strong>Email:</strong> {{user.email}}	
 			</p>
 		</section>
-		<button ng-show="isUserLogged()" class="btn btn-default">Enviar mensagem</button>
+		<a ng-show="isUserLogged()" class="btn btn-default" ng-href="#/message/{{userLogged._id}}/to/{{user._id}}" >Enviar mensagem</a>
 	</div>
 </div>

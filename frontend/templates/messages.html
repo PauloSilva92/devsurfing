@@ -1,0 +1,6 @@
+<div ng-repeat="message in messages">
+    <div class="panel panel-default text-center">
+        <a ng-href="#/message/{{userLogged}}/to/{{message.received_id}}">
+            <h2>{{message.received_name}}</h2>
+        </a>
+</div>

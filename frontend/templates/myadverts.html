@@ -3,20 +3,34 @@
 			<h3>Meus anúncios</h3>
         <div class="panel panel-default" ng-repeat="advert in adverts">
             <div class="panel-body">
+                <div class="textAd">
+                    <p>{{advert.text}}</p>    
+                </div>
                 <div class="row">
                     <div class=" col-lg-6 col-md-6 col-sm-12">
-                        <p>{{advert.text}}</p>
                         <strong> tags: </strong>
                         <div ng-repeat="tag in advert.tags">
                             <a ng-href="#/search/{{tag}}">{{tag}}</a>
                         </div>
                     </div>
-                    <br>
                     <div  class="col-lg-6 col-md-6 col-sm-12">
-                    <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
-                    <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
-                        <button class="btn btn-danger" ng-click="delete(advert._id)">Excluir</button>
-                    </div>    
+                        <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                    </div>   
+                </div>
+                   <!--<button class="btn btn-danger" >Excluir</button>-->
+                   
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                         <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p> 
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <a class=" dropdown-toogle  pull-right" data-toggle="dropdown"><span class="glyphicon glyphicon-option-vertical"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="delete(advert._id)">Excluir</a></li>
+                        </ul>
+                    </div>
                 </div>
                 
             </div>

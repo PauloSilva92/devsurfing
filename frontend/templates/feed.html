@@ -2,7 +2,7 @@
 <div class="panel">
 	<h3>Seu feed</h3>
 </div>
-<div ng-if="adverts.message">
+<!--<div ng-if="adverts.message">
     <h3>{{adverts.message}}</h3>
 </div>
 <div ng-repeat="advert in adverts" ng-if="!adverts.message">    
@@ -23,6 +23,36 @@
                 </div>
             </div>
         </div>
+</div>
+-->
+
+
+    <div class="panel">
+        <div class="panel panel-default" ng-repeat="advert in adverts">
+            <div class="panel-body">
+                <h3><a ng-href="#/user/{{advert.user_id}}">{{advert.user_name | capitalize}}</a></h3>
+                <div class="textAd">
+                    <p>{{advert.text}}</p>    
+                </div>
+                <div class="row">
+                    <div class=" col-lg-6 col-md-6 col-sm-12">
+                        <strong> tags: </strong>
+                        <div ng-repeat="tag in advert.tags">
+                            <a ng-href="#/search/{{tag}}">{{tag}}</a>
+                        </div>
+                    </div>
+                    <div  class="col-lg-6 col-md-6 col-sm-12">
+                        <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                    </div>   
+                </div>
+                   <!--<button class="btn btn-danger" >Excluir</button>-->
+                   
+            </div>
+            <div class="panel-footer">
+                <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p> 
+            </div>
+        </div>
+    </div>
 </div>
 
 	

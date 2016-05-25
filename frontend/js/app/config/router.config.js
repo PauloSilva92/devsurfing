@@ -127,6 +127,7 @@
 							reloadPage();
 						});
 					}
+					
 
 				},
 				resolve: {
@@ -154,6 +155,30 @@
 			});
 			$routeProvider.when('/404',{
 				templateUrl : 'templates/404.html'
+			});
+				$routeProvider.when('/messages',{
+				templateUrl : 'templates/messages.html',
+				controller : function(messages, $scope,$window){
+					$scope.messages = messages;
+					$scope.userLogged = $window.sessionStorage.getItem('id');
+				},
+				resolve : {
+					messages : function(){
+						return [{
+							sent_name: 'paulo',
+							received_name: 'lucio',
+							received_id: '13123'
+						},
+						{
+							sent_name: 'paulo',
+							received_name: 'anderson',
+							received_id: '45345435'
+						}];
+					}
+				}
+			});
+			$routeProvider.when('/message/:sent_id/to/:received_id',{
+				templateUrl : 'templates/message.html'
 			});
 			$routeProvider.when('/',{
 				templateUrl : 'templates/feed.html',
