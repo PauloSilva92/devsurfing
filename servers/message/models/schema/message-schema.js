@@ -3,11 +3,12 @@ const Schema = mongoose.Schema;
 
 const _message = {
 	messages : [{
-		user_id : String,
+		user_sent : String,
+		user_id: String,
 		text : String,
 		sent_at : {type : Date, default : Date.now}
 	}],
-	owner_id : String,
+	sent_id : String,
 	receiver_id : String
 }
 

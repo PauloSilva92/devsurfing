@@ -13,29 +13,51 @@ const _save = (message,callback)=>{
         };
     });
 };
-const _update = (mess_id,mod,callback)=>{
-    const query = Message.update({_id : mess_id} ,{$push : {messages : {$each : mod} } });
+
+const _addMessage = (sent_id,receiver_id,mod,callback)=>{
+    const query = Message.find({$or: [{$and : [{sent_id : sent_id},{receiver_id: receiver_id}]},{$and : [{sent_id : receiver_id},{receiver_id: sent_id}]}]});
     
     query.exec((err, data)=>{
         if(err){
             callback({message: err.toString()});
-        }else if(data){
-            callback(data);
-        }else{
-            callback({message : 'deu treta'});
+        }else if(data.length === 0){
+            console.log(data);
+            const message = {
+                receiver_id : receiver_id,
+                sent_id : sent_id,
+                messages :[
+                    mod
+                ]
+            };
+            _save(message,callback);
+        }else if(data.length > 0){
+            _update(sent_id,receiver_id,mod,callback);
         };
     });
 };
-const _get = (mess_id,callback)=>{
-    const query = Message.findOne({_id : mess_id});
+
+const _update = (sent_id,receiver_id,mod,callback)=>{
+    const query = Message.update({$or: [{$and : [{sent_id : sent_id},{receiver_id: receiver_id}]},{$and : [{sent_id : receiver_id},{receiver_id: sent_id}]}]},{$push:{messages:mod}});
+    
+    query.exec((err,data)=>{
+        if(err){
+            callback({message: err.toString()});
+        }else{
+            callback(data);
+        }
+    })
+}
+
+const _get = (sent_id,receiver_id,callback)=>{
+    const query = Message.findOne({$or: [{$and : [{sent_id : sent_id},{receiver_id: receiver_id}]},{$and : [{sent_id : receiver_id},{receiver_id: sent_id}]}]});
     
     query.exec((err, data)=>{
         if(err){
             callback({message: err.toString()});
         }else if(data){
-            callback(data);
+            callback(data.messages);
         }else{
-            callback({message : 'deu treta'});
+            callback([{message : 'Não foi achado nada'}]);
         };
     });
 };
@@ -56,7 +78,6 @@ const _getAll = (user_id,callback)=>{
 
 module.exports = {
     save : _save,
-    update : _update,
-    get : _get,
-    getAll : _getAll
+    addMessage : _addMessage,
+    get : _get
 };

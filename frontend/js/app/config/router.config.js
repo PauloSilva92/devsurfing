@@ -165,12 +165,12 @@
 				resolve : {
 					messages : function(){
 						return [{
-							sent_name: 'paulo',
+							sent_name: 'paulo silva',
 							received_name: 'lucio',
 							received_id: '13123'
 						},
 						{
-							sent_name: 'paulo',
+							sent_name: 'paulo silva',
 							received_name: 'anderson',
 							received_id: '45345435'
 						}];
@@ -178,7 +178,58 @@
 				}
 			});
 			$routeProvider.when('/message/:sent_id/to/:received_id',{
-				templateUrl : 'templates/message.html'
+				templateUrl : 'templates/message.html',
+				controller: function($route,$scope,messages,$window, messageService){
+					$scope.messages = messages.reverse();
+					$scope.addMessage = addMessage;
+					
+
+					const sent_id = $route.current.params.sent_id;
+					const received_id = $route.current.params.received_id;
+					
+					
+					function addMessage(text){
+						
+						const message = {
+							text: text,
+							user_sent : $window.sessionStorage.getItem('nome'),
+							user_id : $window.sessionStorage.getItem('id')
+						};
+						
+						messageService.addMessage(sent_id,received_id,message).then(function success(data){
+							$route.reload();
+						}, function error(data){
+							$scope.messages.push(message);
+						});
+						
+						
+					}
+					
+				},
+				resolve: {
+					messages: function($route,messageService){
+						const sent_id = $route.current.params.sent_id;
+						const received_id = $route.current.params.received_id;
+						
+						return  messageService.getMessage(sent_id,received_id).then(function success(data){
+							return data.data;
+						}, function error(data){
+							return [
+								{
+									user_sent: 'lucio',
+									text: "Ola, como vai",
+									sent_at: "12/12/1992"
+								},
+								{
+									user_sent : 'paulo',
+									text: "estou bem",
+									sent_at: "12/12/1992"
+								}
+								
+							]
+						})
+					}
+				}
 			});
 			$routeProvider.when('/',{
 				templateUrl : 'templates/feed.html',
