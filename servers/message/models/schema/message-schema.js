@@ -8,6 +8,8 @@ const _message = {
 		text : String,
 		sent_at : {type : Date, default : Date.now}
 	}],
+	sent_name : String,
+	receiver_name : String,
 	sent_id : String,
 	receiver_id : String
 }

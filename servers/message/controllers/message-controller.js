@@ -14,7 +14,9 @@ const _save = (message,callback)=>{
     });
 };
 
-const _addMessage = (sent_id,receiver_id,mod,callback)=>{
+
+
+const _addMessage = (sent_id,receiver_id,sent_name, receiver_name,mod,callback)=>{
     const query = Message.find({$or: [{$and : [{sent_id : sent_id},{receiver_id: receiver_id}]},{$and : [{sent_id : receiver_id},{receiver_id: sent_id}]}]});
     
     query.exec((err, data)=>{
@@ -25,6 +27,8 @@ const _addMessage = (sent_id,receiver_id,mod,callback)=>{
             const message = {
                 receiver_id : receiver_id,
                 sent_id : sent_id,
+                sent_name: sent_name,
+                receiver_name : receiver_name,
                 messages :[
                     mod
                 ]
@@ -63,13 +67,13 @@ const _get = (sent_id,receiver_id,callback)=>{
 };
 
 const _getAll = (user_id,callback)=>{
-    const query = Message.find({$or: [ {owner_id : user_id}, {receiver_id : user_id} ]});
+    const query = Message.find({$or: [{sent_id: user_id}, {receiver_id: user_id}]},{sent_name: 1, sent_id: 1,receiver_name: 1, receiver_id: 1 , _id : 0});
     
     query.exec((err, data)=>{
         if(err){
             callback({message: err.toString()});
         }else if(data){
-            callback(data);
+            callback(data);    
         }else{
             callback({message : 'Não possível encontrar nada'});
         };
@@ -79,5 +83,6 @@ const _getAll = (user_id,callback)=>{
 module.exports = {
     save : _save,
     addMessage : _addMessage,
-    get : _get
+    get : _get,
+    getAll : _getAll
 };

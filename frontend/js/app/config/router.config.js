@@ -161,32 +161,61 @@
 				controller : function(messages, $scope,$window){
 					$scope.messages = messages;
 					$scope.userLogged = $window.sessionStorage.getItem('id');
+					$scope.redirectToMessages = redirectToMessages;
+					
+					function redirectToMessages(name,id){
+						const firstname = name.split(' ')[0];
+						const lastname = name.split(' ')[1];
+						
+						console.log(firstname);
+						console.log(lastname);
+						
+						$window.location.assign("#/message/"+ $scope.userLogged +"/to/"+id+"/"+firstname+"/"+lastname);
+					}
+					
 				},
 				resolve : {
-					messages : function(){
-						return [{
-							sent_name: 'paulo silva',
-							received_name: 'lucio',
-							received_id: '13123'
-						},
-						{
-							sent_name: 'paulo silva',
-							received_name: 'anderson',
-							received_id: '45345435'
-						}];
+					messages : function(messageService,$window){
+						const user_id = $window.sessionStorage.getItem('id');
+						return messageService.getAll(user_id).then((data)=>{
+							console.log(data.data);
+							return data.data;
+						},(data)=>{
+							return [{
+								sent_name: 'paulo silva',
+								received_name: 'lucio',
+								received_id: '13123'
+							},
+							{
+								sent_name: 'paulo silva',
+								received_name: 'anderson',
+								received_id: '45345435'
+							}];
+						})
+						
+						
 					}
 				}
 			});
-			$routeProvider.when('/message/:sent_id/to/:received_id',{
+			$routeProvider.when('/message/:sent_id/to/:received_id/:user_firstname/:user_lastname',{
 				templateUrl : 'templates/message.html',
 				controller: function($route,$scope,messages,$window, messageService){
 					$scope.messages = messages.reverse();
 					$scope.addMessage = addMessage;
+					$scope.reload = reload;
+					
+					function reload(){
+						$route.reload();
+					}
 					
 
 					const sent_id = $route.current.params.sent_id;
 					const received_id = $route.current.params.received_id;
+					const sent_name = $window.sessionStorage.getItem('nome');
+					const received_name = $route.current.params.user_firstname + ' ' + $route.current.params.user_lastname ;
 					
+					console.log(sent_name);
+					console.log(received_name);
 					
 					function addMessage(text){
 						
@@ -196,7 +225,7 @@
 							user_id : $window.sessionStorage.getItem('id')
 						};
 						
-						messageService.addMessage(sent_id,received_id,message).then(function success(data){
+						messageService.addMessage(sent_id,received_id, sent_name, received_name,message).then(function success(data){
 							$route.reload();
 						}, function error(data){
 							$scope.messages.push(message);

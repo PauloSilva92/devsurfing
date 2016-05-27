@@ -1,15 +1,3 @@
-<!--<div ng-repeat="message in messages">
-    <a ng-href="">{{message.user_sent}}</a>
-    <p>{{message.text}}</p>
-</div>
-<form role="form" name="messageForm">
-    <div class="form-group input-group">
-        <i class="input-group-addon glyphicon glyphicon-envelope"></i>
-        <input class="form-control" type="text" ng-model="message.text" required></input>	
-    </div>
-    <button class="form-control" ng-disabled="messageForm.$invalid" ng-click="addMessage(message.text)"><i class="glyphicon glyphicon-ok"></i> </button>
-</form>-->
-
 <div>
     <form role="form" name="messageForm" id="messageForm">
         <div class="form-group input-group">
@@ -18,6 +6,7 @@
         </div>
         <button class="form-control" ng-disabled="messageForm.$invalid" ng-click="addMessage(message.text)"><i class="glyphicon glyphicon-ok"></i> </button>
     </form>
+    <button class="form-control" ng-click="reload()">Recarregar</button>
     <div ng-repeat="message in messages">
         <a ng-href="#/user/{{message.user_id}}">{{message.user_sent | capitalize}}</a>
         <p>{{message.text}}</p>

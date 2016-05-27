@@ -7,7 +7,7 @@
 		messageService.$inject = ['$http'];
 
 		function messageService($http){
-			const _addMessage = (sent_id, received_id,message)=> $http.post('http://localhost:5000/message/'+sent_id+'/to/'+received_id, message);
+			const _addMessage = (sent_id, received_id,sent_name,received_name, message)=> $http.post('http://localhost:5000/message/'+sent_id+'/to/'+received_id+'/'+sent_name+'/'+received_name, message);
             
             const _edit = (id,message)=> $http.put('http://localhost:5000/message/'+id, message);
 
