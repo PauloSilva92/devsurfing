@@ -167,8 +167,7 @@
 						const firstname = name.split(' ')[0];
 						const lastname = name.split(' ')[1];
 						
-						console.log(firstname);
-						console.log(lastname);
+					
 						
 						$window.location.assign("#/message/"+ $scope.userLogged +"/to/"+id+"/"+firstname+"/"+lastname);
 					}
@@ -178,7 +177,7 @@
 					messages : function(messageService,$window){
 						const user_id = $window.sessionStorage.getItem('id');
 						return messageService.getAll(user_id).then((data)=>{
-							console.log(data.data);
+							
 							return data.data;
 						},(data)=>{
 							return [{
@@ -202,20 +201,24 @@
 				controller: function($route,$scope,messages,$window, messageService){
 					$scope.messages = messages.reverse();
 					$scope.addMessage = addMessage;
-					$scope.reload = reload;
 					
-					function reload(){
-						$route.reload();
-					}
-					
-
 					const sent_id = $route.current.params.sent_id;
 					const received_id = $route.current.params.received_id;
 					const sent_name = $window.sessionStorage.getItem('nome');
 					const received_name = $route.current.params.user_firstname + ' ' + $route.current.params.user_lastname ;
 					
-					console.log(sent_name);
-					console.log(received_name);
+					var socket = io.connect('http://localhost:5000');
+					socket.on('connect', function(){
+						console.log('conectou');
+					})
+					
+					socket.on('newMessage', function(data){
+						if(((data.sent_id === sent_id) && (data.received_id  === received_id)) || ((data.sent_id === received_id) && (data.received_id  === sent_id)) ){
+							console.log('recarregou');
+							$route.reload();	
+						}
+					});
+					
 					
 					function addMessage(text){
 						
@@ -226,6 +229,7 @@
 						};
 						
 						messageService.addMessage(sent_id,received_id, sent_name, received_name,message).then(function success(data){
+							socket.emit('newMessage',{sent_id: sent_id, received_id: received_id});
 							$route.reload();
 						}, function error(data){
 							$scope.messages.push(message);

@@ -1,5 +1,6 @@
 require('./config/db-config');
 const app = require('./config/app-config');
+const io = require('./config/socket-config');
 
 const Message = require('./routers/message-router');
 

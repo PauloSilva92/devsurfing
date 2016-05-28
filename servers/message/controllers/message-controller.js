@@ -1,4 +1,5 @@
 const Message = require('../models/message-module');
+const socket = require('../config/socket-config');
 
 const _save = (message,callback)=>{
     const newMe = new Message(message);
@@ -59,6 +60,7 @@ const _get = (sent_id,receiver_id,callback)=>{
         if(err){
             callback({message: err.toString()});
         }else if(data){
+            
             callback(data.messages);
         }else{
             callback([{message : 'Não foi achado nada'}]);

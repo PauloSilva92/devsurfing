@@ -22,14 +22,9 @@ router.post('/:sent_id/to/:received_id/:sent_name/:received_name',(req, res)=>{
 router.get('/:sent_id/to/:received_id',(req,res)=>{
      const sent_id = req.params.sent_id;
      const received_id = req.params.received_id;
-     const message = [{
-            text: 'oi tudo bom',
-            user_sent : 'paulo',
-            user_id : received_id
-        }];
-        messageController.get(sent_id,received_id,(data)=>{
-            res.json(data);     
-        });
+     messageController.get(sent_id,received_id,(data)=>{
+         res.json(data);     
+     });
      
 });
 router.get('/all/:user_id',(req,res)=>{

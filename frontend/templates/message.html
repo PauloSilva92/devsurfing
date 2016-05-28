@@ -6,10 +6,8 @@
         </div>
         <button class="form-control" ng-disabled="messageForm.$invalid" ng-click="addMessage(message.text)"><i class="glyphicon glyphicon-ok"></i> </button>
     </form>
-    <button class="form-control" ng-click="reload()">Recarregar</button>
     <div ng-repeat="message in messages">
         <a ng-href="#/user/{{message.user_id}}">{{message.user_sent | capitalize}}</a>
         <p>{{message.text}}</p>
     </div>
-    
 </div>
