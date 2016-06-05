@@ -7,43 +7,27 @@ info:
 
 # Describe your paths here
 paths:
-  
-  /:message_id:
-    get:
+
+  /:sent_id/to/:received_id/:sent_name/received_name:
+    post:
       description: |
-        Obtem determinada conversa
-      parameters:
-        -
-          name: message_id
-          in: query
-          description: o id da conversa
-          required: true
-          type: string
+        Cria e insere mensagens em uma conversa recebendo por pela url os dados dos usuários e pelo corpo da requisição a mensagem
       responses:
         200:
           description: Resposta de sucesso, devolve um JSon
-           
-  /:
-    post:
+
+  /:sent_id/to/:received_id:
+    get:
       description: |
-        Recebe um objeto que com todos os dados para criar a conversa
+        Obtem determinada conversa através dos ids dos usuários
       responses:
         200:
-          description: OK
-  
-  /:message_id:
-    put:
-      description: |
-        Recebe um objeto que com todos os dados para inserir uma nova mensagem na conversa
-      responses:
-        200:
-          description: OK
-          
+          description: retorna um json com as mensagens da conversa
+
   /all/:user_id:
     get:
       description: |
-        obtem todas as conversas de determinado usuário
+        através do ID do usuário obtem o nome e ID de todos os usuários com os quais o usuário específico possui conversas
       responses:
         200:
-          description: OK
-      
+          description: retorna um JSON contendo o nome e o ID dos usuários
