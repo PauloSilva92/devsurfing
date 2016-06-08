@@ -12,7 +12,7 @@
 			const _login = (user)=> $http.post('http://localhost:3000/user/login', user);
 
 			const _get = ()=> $http.get('http://localhost:3000/user/data');
-			
+
 			const _getOne = (id)=> $http.get('http://localhost:3000/user/'+id);
 
 			const _edit = (user)=> $http.put('http://localhost:3000/user/save', user);

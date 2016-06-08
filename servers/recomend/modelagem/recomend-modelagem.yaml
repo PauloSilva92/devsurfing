@@ -1,0 +1,25 @@
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: Devsurfing-recomendacoes
+
+# Describe your paths here
+paths:
+
+  /recomendedByFollow/user_id:
+    get:
+      description: |
+        Gera recomendação de anúncios baseado nos gostos do usuário usuário
+      responses:
+        200:
+          description: Resposta de sucesso, devolve um JSON com os anúncio sugeridos
+
+  /trending/user_id:
+    get:
+      description: |
+        Gera recomendação de anúncios baseado nas tags mais utilizadas
+      responses:
+        200:
+          description: Resposta de sucesso, devolve um JSON com os anúncio sugeridos

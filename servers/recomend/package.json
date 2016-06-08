@@ -1,0 +1,17 @@
+{
+  "name": "recomend-devsurfing",
+  "version": "1.0.0",
+  "description": "serviço de recomendações do devsurfing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paulo Roberto da Silva <paulorb_s@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.21",
+    "morgan": "^1.7.0"
+  }
+}
