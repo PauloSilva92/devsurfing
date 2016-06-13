@@ -6,7 +6,7 @@
 
 		function routerConfig($routeProvider){
 			$routeProvider.when('/advert/:advert_id',{
-				templateUrl : 'templates/advert.html', 
+				templateUrl : 'templates/advert.html',
 				controller : function(advert, $scope){
 					$scope.advert = advert;
 				},
@@ -28,7 +28,7 @@
 					$scope.isFollowing = isFollowing;
 					$scope.tag = $route.current.params.searchString;
 
-					
+
 					(function getLogged(){
 						userService.get().then(function success(data){
 							$scope.userLogged = data.data;
@@ -39,9 +39,9 @@
 						if($scope.userLogged){
 							let result = $scope.userLogged.following.indexOf($scope.tag);
 							if(result < 0){
-								return true;	
+								return true;
 							}else{
-								return false;	
+								return false;
 							}
 						}
 					}
@@ -82,7 +82,7 @@
 					$scope.follow = follow;
 					$scope.unfollow = unfollow;
 					$scope.isFollowing = isFollowing;
-					
+
 					(function getLogged(){
 						userService.get().then(function success(data){
 							$scope.userLogged = data.data;
@@ -103,9 +103,9 @@
 						if($scope.userLogged){
 							let result = $scope.userLogged.following.indexOf($scope.user._id);
 							if(result < 0){
-								return true;	
+								return true;
 							}else{
-								return false;	
+								return false;
 							}
 						}
 					}
@@ -127,7 +127,7 @@
 							reloadPage();
 						});
 					}
-					
+
 
 				},
 				resolve: {
@@ -162,22 +162,22 @@
 					$scope.messages = messages;
 					$scope.userLogged = $window.sessionStorage.getItem('id');
 					$scope.redirectToMessages = redirectToMessages;
-					
+
 					function redirectToMessages(name,id){
 						const firstname = name.split(' ')[0];
 						const lastname = name.split(' ')[1];
-						
-					
-						
+
+
+
 						$window.location.assign("#/message/"+ $scope.userLogged +"/to/"+id+"/"+firstname+"/"+lastname);
 					}
-					
+
 				},
 				resolve : {
 					messages : function(messageService,$window){
 						const user_id = $window.sessionStorage.getItem('id');
 						return messageService.getAll(user_id).then((data)=>{
-							
+
 							return data.data;
 						},(data)=>{
 							return [{
@@ -191,8 +191,8 @@
 								received_id: '45345435'
 							}];
 						})
-						
-						
+
+
 					}
 				}
 			});
@@ -201,49 +201,49 @@
 				controller: function($route,$scope,messages,$window, messageService){
 					$scope.messages = messages.reverse();
 					$scope.addMessage = addMessage;
-					
+
 					const sent_id = $route.current.params.sent_id;
 					const received_id = $route.current.params.received_id;
 					const sent_name = $window.sessionStorage.getItem('nome');
 					const received_name = $route.current.params.user_firstname + ' ' + $route.current.params.user_lastname ;
-					
+
 					var socket = io.connect('http://localhost:5000');
 					socket.on('connect', function(){
 						console.log('conectou');
 					})
-					
+
 					socket.on('newMessage', function(data){
 						if(((data.sent_id === sent_id) && (data.received_id  === received_id)) || ((data.sent_id === received_id) && (data.received_id  === sent_id)) ){
 							console.log('recarregou');
-							$route.reload();	
+							$route.reload();
 						}
 					});
-					
-					
+
+
 					function addMessage(text){
-						
+
 						const message = {
 							text: text,
 							user_sent : $window.sessionStorage.getItem('nome'),
 							user_id : $window.sessionStorage.getItem('id')
 						};
-						
+
 						messageService.addMessage(sent_id,received_id, sent_name, received_name,message).then(function success(data){
 							socket.emit('newMessage',{sent_id: sent_id, received_id: received_id});
 							$route.reload();
 						}, function error(data){
 							$scope.messages.push(message);
 						});
-						
-						
+
+
 					}
-					
+
 				},
 				resolve: {
 					messages: function($route,messageService){
 						const sent_id = $route.current.params.sent_id;
 						const received_id = $route.current.params.received_id;
-						
+
 						return  messageService.getMessage(sent_id,received_id).then(function success(data){
 							return data.data;
 						}, function error(data){
@@ -258,7 +258,7 @@
 									text: "estou bem",
 									sent_at: "12/12/1992"
 								}
-								
+
 							]
 						})
 					}
@@ -281,6 +281,32 @@
 					}
 				}
 			});
-			$routeProvider.otherwise({redirectTo:'/404'})
+			$routeProvider.when('/recommendations',{
+				templateUrl : 'templates/recomend.html',
+				controller : function(trending, recomendedByFollow, $scope){
+					$scope.trending = trending;
+					$scope.recomendedByFollow = recomendedByFollow;
+				},
+				resolve : {
+					trending : function(recService,$window){
+						const user_id = $window.sessionStorage.getItem('id');
+						return recService.trending(user_id).then(function success(response){
+							return response.data;
+						},function error(response){
+							console.log(error);
+						})
+					},
+					recomendedByFollow : function(recService,$window){
+						const user_id = $window.sessionStorage.getItem('id');
+						return recService.recomendedByFollow(user_id).then(function success(response){
+							return response.data;
+						},function error(response){
+							console.log(error);
+						});
+					}
+				}
+
+			});
+			$routeProvider.otherwise({redirectTo:'/404'});
 		}
 })()

@@ -1,0 +1,55 @@
+<h2>Recomendações baseadas nos seus gostos</h2>
+<div class="panel">
+    <div class="panel panel-default" ng-repeat="advert in recomendedByFollow">
+        <div class="panel-body">
+            <h3><a ng-href="#/user/{{advert.user_id}}">{{advert.user_name | capitalize}}</a></h3>
+            <div class="textAd">
+                <p>{{advert.text}}</p>
+            </div>
+            <div class="row">
+                <div class=" col-lg-6 col-md-6 col-sm-12">
+                    <strong> tags: </strong>
+                    <div ng-repeat="tag in advert.tags">
+                        <a ng-href="#/search/{{tag}}">{{tag}}</a>
+                    </div>
+                </div>
+                <div  class="col-lg-6 col-md-6 col-sm-12">
+                    <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
+        </div>
+    </div>
+</div>
+</div>
+
+<h2>Recomendado de acordo com as tags mais utilizadas pelos usuários</h2>
+<div class="panel">
+    <div class="panel panel-default" ng-repeat="advert in trending">
+        <div class="panel-body">
+            <h3><a ng-href="#/user/{{advert.user_id}}">{{advert.user_name | capitalize}}</a></h3>
+            <div class="textAd">
+                <p>{{advert.text}}</p>
+            </div>
+            <div class="row">
+                <div class=" col-lg-6 col-md-6 col-sm-12">
+                    <strong> tags: </strong>
+                    <div ng-repeat="tag in advert.tags">
+                        <a ng-href="#/search/{{tag}}">{{tag}}</a>
+                    </div>
+                </div>
+                <div  class="col-lg-6 col-md-6 col-sm-12">
+                    <strong>Endereço: </strong>{{advert.adress.city}},{{advert.adress.state}}
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <p><a ng-href="#/advert/{{advert._id}}">Ver detalhes</a></p>
+        </div>
+    </div>
+</div>
+</div>
