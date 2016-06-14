@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectString =
-		  process.env.MONGOLAB_URI || 'mongodb://localhost/devsurfing';
+		  process.env.MONGODB_URI || 'mongodb://localhost/devsurfing';
 
 mongoose.connect(connectString);
 

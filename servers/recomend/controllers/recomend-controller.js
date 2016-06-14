@@ -2,7 +2,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const mongo = require('mongodb');
 
-const url = 'mongodb://localhost:27017/devsurfing'
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/devsurfing'
 
 
 function getAds(tags,id,Advert,db, callback) {

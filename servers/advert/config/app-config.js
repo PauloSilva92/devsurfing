@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan      = require('morgan');
+const cors = require('cors');
 
 
 const port = process.env.PORT || 4000;
@@ -18,11 +19,8 @@ app.listen(port, function(){
     console.log('Rodando na porta: '+port);
 });
 
-app.use(function(req, res, next){
-	res.setHeader('Access-Control-Allow-Origin','*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET,POST, PUT, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, token');
-	next();
-})
 
+app.use(cors({
+    allowedHeaders : ['X-Requested-With','Content-type', 'token']
+}));
 module.exports = app;

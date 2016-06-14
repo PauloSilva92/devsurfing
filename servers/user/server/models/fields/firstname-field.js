@@ -1,10 +1,13 @@
 'use strict';
 
-const _set = (v)=> v.toUpperCase();
-const _get = (v)=> v;
+const _set = (v)=> v.charAt(0).toUpperCase() + v.slice(1);
+const _get = (v)=>{
+	v.toLowerCase();
+	return v.charAt(0).toUpperCase() + v.slice(1);
+};
 const _validate = (v)=> v.length > 2;
 
-const Field = { 
+const Field = {
 	type : String,
 	set : _set,
 	get : _get,
